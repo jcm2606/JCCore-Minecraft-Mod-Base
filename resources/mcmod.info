@@ -1,0 +1,10 @@
+[
+{
+	"modid": "JCCore",
+	"name": "JC Core",
+	"description": "Collection of code to help make the development of my mods a cleaner and much smoother process.",
+	"version": "VERSION",
+	"authors": ["Jcm2606"],
+	"credits": "Authored and coded by Jcm2606. ApexAPI used in JC Core, ApexAPI developed by (Asyncronous, Darkhax, ShadowChild (Viper283), me)."
+}
+]
