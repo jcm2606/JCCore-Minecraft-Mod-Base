@@ -1,4 +1,4 @@
-package jcm2606.mods.jccore;
+package jcm2606.mods.jccore.util;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

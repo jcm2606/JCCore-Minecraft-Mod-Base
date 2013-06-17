@@ -2,7 +2,7 @@ package jcm2606.mods.jccore.compat;
 
 import java.util.HashMap;
 
-import jcm2606.mods.jccore.IObjectCore;
+import jcm2606.mods.jccore.core.IObjectCore;
 import jcm2606.mods.jccore.core.JCCore;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

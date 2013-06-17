@@ -1,9 +1,9 @@
 package jcm2606.mods.jccore.core;
 
-import jcm2606.mods.jccore.LoggerBase;
 import jcm2606.mods.jccore.compat.ModCompatibility;
 import jcm2606.mods.jccore.core.proxy.CommonProxy;
 import jcm2606.mods.jccore.lib.Reference;
+import jcm2606.mods.jccore.util.LoggerBase;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;

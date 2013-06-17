@@ -1,8 +1,7 @@
-package jcm2606.mods.jccore;
+package jcm2606.mods.jccore.util;
 
 import java.util.Random;
 
-import jcm2606.mods.jccore.util.GenerationUtil;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;

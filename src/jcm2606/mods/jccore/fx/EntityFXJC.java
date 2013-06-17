@@ -1,4 +1,4 @@
-package jcm2606.mods.jccore;
+package jcm2606.mods.jccore.fx;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 public class EntityFXJC extends EntityFX {
     public int blendMode = 771;
+    public boolean shrink = false;
     
     public EntityFXJC(World par1World, double par2, double par4, double par6, double par8, double par10, double par12) {
         super(par1World, par2, par4, par6, par8, par10, par12);
@@ -42,6 +43,9 @@ public class EntityFXJC extends EntityFX {
         float f8 = this.particleTextureIndexY / 16.0F;
         float f9 = f8 + 0.0624375F;
         float f10 = 0.1F * this.particleScale;
+        if (this.shrink) {
+            f10 *= (this.particleMaxAge - this.particleAge + 1) / this.particleMaxAge;
+        }
 
         if (this.particleIcon != null)
         {

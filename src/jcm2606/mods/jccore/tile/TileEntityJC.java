@@ -1,4 +1,4 @@
-package jcm2606.mods.jccore;
+package jcm2606.mods.jccore.tile;
 
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;

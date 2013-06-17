@@ -1,6 +1,6 @@
 package jcm2606.mods.jccore.core.proxy;
 
-import jcm2606.mods.jccore.ICommonProxy;
+import jcm2606.mods.jccore.core.ICommonProxy;
 
 public class CommonProxy implements ICommonProxy {
     @Override

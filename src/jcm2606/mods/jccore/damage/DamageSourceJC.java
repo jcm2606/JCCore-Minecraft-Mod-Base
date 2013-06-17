@@ -1,4 +1,4 @@
-package jcm2606.mods.jccore;
+package jcm2606.mods.jccore.damage;
 
 import net.minecraft.util.DamageSource;
 import cpw.mods.fml.common.registry.LanguageRegistry;

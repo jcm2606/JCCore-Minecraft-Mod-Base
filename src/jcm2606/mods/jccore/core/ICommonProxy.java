@@ -1,4 +1,4 @@
-package jcm2606.mods.jccore;
+package jcm2606.mods.jccore.core;
 
 /**
  * Base interface for any ForgeModLoader CommonProxy class.
