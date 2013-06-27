@@ -12,19 +12,53 @@ import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * Base class for any {@link ITickHandler} classes for the client-side of the game's logic.
+ * 
+ * @author Jcm2606
+ */
 @SideOnly(Side.CLIENT)
 public abstract class TickHandlerClientBase implements ITickHandler
 {
     boolean clientWorldLoaded;
 
+    /**
+     * Hook for client world loading.
+     * 
+     * @param mc
+     * @param world
+     */
     public abstract void onClientWorldLoad(Minecraft mc, World world);
     
+    /**
+     * Hook for client world unloading.
+     * 
+     * @param mc
+     * @param world
+     */
     public abstract void onClientWorldUnload(Minecraft mc, World world);
     
+    /**
+     * Hook for client world ticking.
+     * 
+     * @param mc
+     * @param world
+     */
     public abstract void onClientWorldTick(Minecraft mc, World world);
     
+    /**
+     * Hook for HUD ticking.
+     * 
+     * @param mc
+     */
     public abstract void onHUDTick(Minecraft mc);
     
+    /**
+     * Hook for GUI ticking.
+     * 
+     * @param mc
+     * @param guiscreen
+     */
     public abstract void onGUITick(Minecraft mc, GuiScreen guiscreen);
     
     @Override

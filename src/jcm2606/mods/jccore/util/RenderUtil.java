@@ -19,6 +19,11 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
+/**
+ * Utilities designed to help make rendering faster and easier.
+ * 
+ * @author Jcm2606
+ */
 public class RenderUtil {
     private static final RenderUtil INSTANCE = new RenderUtil();
     

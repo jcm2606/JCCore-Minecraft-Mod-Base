@@ -2,31 +2,45 @@ package jcm2606.mods.jccore.compat;
 
 import java.util.HashMap;
 
+import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.jccore.core.IObjectCore;
-import jcm2606.mods.jccore.core.JCCore;
+import jcm2606.mods.jccore.util.IconIndexer;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.Icon;
-import apex.util.ApexIconIndexer;
-import cpw.mods.fml.common.Loader;
 
+/**
+ * Core class for inter-mod compatibility.
+ * 
+ * @author Jcm2606
+ */
 public class ModCompatibility {
-    public static boolean isSCInstalled;
+    private static final ModCompatibility instance = new ModCompatibility();
     
-    public static boolean globalModCompatFlag;
-    
-    public static boolean checkSCInstalled()
+    public static ModCompatibility get()
     {
-        if(Loader.isModLoaded("SorceryCraft"))
-        {
-            JCCore.logger.info("SorceryCraft has been detected.");
-            return true;
-        }
-        
-        return false;
+        return instance;
     }
     
-    public static Block getBlock(String classPath, String varName)
+    /**
+     * Get the mod class from the given {@link CompatibilityContainer}
+     * 
+     * @param container
+     * @return Mod class
+     */
+    public Object getModClassFromCompatContainer(CompatibilityContainer container)
+    {
+        return container.getModClass();
+    }
+    
+    /**
+     * Get a {@link Block} instance of the given variable inside the given class.
+     * 
+     * @param classPath
+     * @param varName
+     * @return The {@link Block}
+     */
+    public Block getBlock(String classPath, String varName)
     {
         try {
             return (Block) Class.forName(classPath).getField(varName).get(null);
@@ -50,7 +64,14 @@ public class ModCompatibility {
         return null;
     }
     
-    public static Item getItem(String classPath, String varName)
+    /**
+     * Get an {@link Item} instance of the given variable inside the given class.
+     * 
+     * @param classPath
+     * @param varName
+     * @return The {@link Item}
+     */
+    public Item getItem(String classPath, String varName)
     {
         try {
             return (Item) Class.forName(classPath).getField(varName).get(null);
@@ -74,7 +95,12 @@ public class ModCompatibility {
         return null;
     }
     
-    public static void startObjectLoadingInClass(Class<?> clazz)
+    /**
+     * Starts object loading in the given {@link Class}. Given {@link Class} MUST implement {@link IObjectCore} for this to work.
+     * 
+     * @param clazz
+     */
+    public void startObjectLoadingInClass(Class<?> clazz)
     {
         try {
             Object obj = clazz.newInstance();
@@ -86,12 +112,20 @@ public class ModCompatibility {
                 objectCore.loadObjects();
             }
         }
-        catch (InstantiationException | IllegalAccessException e) {
+        catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
     
-    public static void startObjectIdLoadingInClass(Class<?> clazz)
+    /**
+     * Starts object ID loading in the given {@link Class}. Given {@link Class} MUST implement {@link IObjectCore} for this to work.
+     * 
+     * @param clazz
+     */
+    public void startObjectIdLoadingInClass(Class<?> clazz)
     {
         try {
             Object obj = clazz.newInstance();
@@ -103,12 +137,20 @@ public class ModCompatibility {
                 objectCore.loadIDs();
             }
         }
-        catch (InstantiationException | IllegalAccessException e) {
+        catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
     
-    public static void startTextureLoadingInClass(Class<?> clazz, ApexIconIndexer index, HashMap<String, Icon> iconMap)
+    /**
+     * Starts texture loading in the given {@link Class}. Given {@link Class} MUST implement {@link IObjectCore} for this to work.
+     * 
+     * @param clazz
+     */
+    public void startTextureLoadingInClass(Class<?> clazz, IconIndexer index, HashMap<String, Icon> iconMap)
     {
         try {
             Object obj = clazz.newInstance();
@@ -120,7 +162,10 @@ public class ModCompatibility {
                 objectCore.loadTextures(iconMap, index);
             }
         }
-        catch (InstantiationException | IllegalAccessException e) {
+        catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }

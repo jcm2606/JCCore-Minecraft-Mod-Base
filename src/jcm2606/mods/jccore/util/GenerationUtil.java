@@ -6,9 +6,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+/**
+ * Utilities based around terrain generation.
+ * 
+ * @author Jcm2606
+ */
 public class GenerationUtil {
     /**
-     * Adds ore generation to whatever generator this method is called within.
+     * Add an ore generation entry with ease.
      * 
      * @param maxYLevel
      * @param blockID
@@ -31,6 +36,16 @@ public class GenerationUtil {
         }
     }
     
+    /**
+     * Add a structure generation entry with ease.
+     * 
+     * @param generator
+     * @param blockX
+     * @param blockZ
+     * @param occurance
+     * @param rand
+     * @param world
+     */
     public static void addStructureGen(WorldGenerator generator, int blockX, int blockZ, int occurance, Random rand, World world)
     {
         if(rand.nextInt(100) <= occurance)

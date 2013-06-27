@@ -1,7 +1,10 @@
 package jcm2606.mods.jccore.item;
 
-import jcm2606.mods.jccore.block.IBlockRarity;
+import java.util.List;
+
+import jcm2606.mods.jccore.block.IBlockCustomItem;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -15,11 +18,20 @@ public class ItemBlockJC extends ItemBlock
     @Override
     public EnumRarity getRarity(ItemStack stack)
     {
-        if(Block.blocksList[stack.itemID] instanceof IBlockRarity)
+        if(Block.blocksList[stack.itemID] instanceof IBlockCustomItem)
         {
-            return ((IBlockRarity) Block.blocksList[stack.itemID]).getRarity(stack);
+            return ((IBlockCustomItem) Block.blocksList[stack.itemID]).getRarity(stack);
         }
         
         return EnumRarity.common;
+    }
+    
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
+    {
+        if(Block.blocksList[stack.itemID] instanceof IBlockCustomItem)
+        {
+            ((IBlockCustomItem) Block.blocksList[stack.itemID]).addInformation(stack, player, list, b);
+        }
     }
 }

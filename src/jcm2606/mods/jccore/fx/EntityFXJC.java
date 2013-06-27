@@ -7,6 +7,11 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
+/**
+ * Base class for any custom {@link EntityFX}.
+ * 
+ * @author Jcm2606
+ */
 public class EntityFXJC extends EntityFX {
     public int blendMode = 771;
     public boolean shrink = false;
@@ -19,6 +24,18 @@ public class EntityFXJC extends EntityFX {
         super(par1World, par2, par4, par6);
     }
     
+    /**
+     * Draw the particle with the textures being provided by the given spritesheet.
+     * 
+     * @param spriteSheet
+     * @param tessellator
+     * @param f
+     * @param f1
+     * @param f2
+     * @param f3
+     * @param f4
+     * @param f5
+     */
     public void drawParticle(String spriteSheet, Tessellator tessellator, float f, float f1,
             float f2, float f3, float f4, float f5) {
         boolean wasDrawing = tessellator.isDrawing;

@@ -3,6 +3,11 @@ package jcm2606.mods.jccore.render;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
+/**
+ * Base class for any {@link IItemRenderer} classes created.
+ * 
+ * @author Jcm2606
+ */
 public abstract class ItemRendererBase implements IItemRenderer {
     public float entityX = -1f;
     public float entityY = -1f;
@@ -57,11 +62,43 @@ public abstract class ItemRendererBase implements IItemRenderer {
         }
     }
     
+    /**
+     * Hook for rendering items equipped in the third person model.
+     * 
+     * @param posX
+     * @param posY
+     * @param posZ
+     * @param stack
+     */
     public abstract void renderEquipped(float posX, float posY, float posZ, ItemStack stack);
     
+    /**
+     * Hook for rendering items equipped in the first person hand.
+     * 
+     * @param posX
+     * @param posY
+     * @param posZ
+     * @param stack
+     */
     public abstract void renderEquippedFirstPerson(float posX, float posY, float posZ, ItemStack stack);
     
+    /**
+     * Hook for rendering dropped items that are as entities on the ground.
+     * 
+     * @param posX
+     * @param posY
+     * @param posZ
+     * @param stack
+     */
     public abstract void renderEntity(float posX, float posY, float posZ, ItemStack stack);
     
+    /**
+     * Hook for rendering items in an inventory.
+     * 
+     * @param posX
+     * @param posY
+     * @param posZ
+     * @param stack
+     */
     public abstract void renderInventory(float posX, float posY, float posZ, ItemStack stack);
 }

@@ -9,15 +9,39 @@ import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * Base class for any {@link ITickHandler} classes for the server-side logic of the game.
+ * 
+ * @author Jcm2606
+ */
 @SideOnly(Side.SERVER)
 public abstract class TickHandlerServerBase implements ITickHandler
 {
+    /**
+     * Hook for server world load.
+     * 
+     * @param world
+     */
     public abstract void onServerWorldLoad(World world);
     
+    /**
+     * Hook for server world ticking.
+     * 
+     * @param world
+     */
     public abstract void onServerWorldTick(World world);
     
+    /**
+     * Hook for server player ticking.
+     * 
+     * @param player
+     * @param world
+     */
     public abstract void onServerPlayerTick(EntityPlayer player, World world);
     
+    /**
+     * Hook for central server logic ticking.
+     */
     public abstract void onServerTick();
     
     @Override
