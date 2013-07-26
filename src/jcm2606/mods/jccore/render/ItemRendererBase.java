@@ -52,7 +52,7 @@ public abstract class ItemRendererBase implements IItemRenderer {
                 renderEquipped(equippedX, equippedY, equippedZ, item);
                 break;
             case EQUIPPED_FIRST_PERSON:
-                renderEquipped(equippedFirstPersonX, equippedFirstPersonY, equippedFirstPersonZ, item);
+                renderEquippedFirstPerson(equippedFirstPersonX, equippedFirstPersonY, equippedFirstPersonZ, item);
                 break;
             case INVENTORY:
                 renderInventory(invX, invY, invZ, item);

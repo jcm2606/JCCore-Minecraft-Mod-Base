@@ -7,7 +7,9 @@ package jcm2606.mods.jccore.core;
  */
 public interface IClientProxy {
     /**
-     * Loads the rendering features. Does nothing on the server.
+     * Loads the rendering features.
+     * 
+     * Does nothing on the server.
      */
     public void loadRendering();
 
@@ -18,7 +20,9 @@ public interface IClientProxy {
     public void loadTileEntities();
 
     /**
-     * Loads the custom rarities for a mod. Does nothing on the server.
+     * Loads the custom rarities for a mod.
+     * 
+     * Does nothing on the server.
      */
     public void loadCustomRarities();
 
@@ -27,4 +31,18 @@ public interface IClientProxy {
      * sure to invoke the super method!
      */
     public void registerHandlers();
+    
+    /**
+     * Loads the keybindings for a mod.
+     * 
+     * Does nothing on the server.
+     */
+    public void loadKeyBindings();
+    
+    /**
+     * Loads the render ids for a mod.
+     * 
+     * Does nothing on the server.
+     */
+    public void loadRenderIds();
 }

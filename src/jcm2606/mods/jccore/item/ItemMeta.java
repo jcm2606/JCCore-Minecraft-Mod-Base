@@ -15,9 +15,10 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class ItemMeta extends Item{
     private final String[] names;
-    private final Icon[] icons;
+    private final String[] icons;
+    private Icon[] iconList;
     
-    public ItemMeta(int id, String[] names, Icon[] icons){
+    public ItemMeta(int id, String[] names, String[] icons){
         super(id);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
@@ -27,11 +28,17 @@ public class ItemMeta extends Item{
     
     @Override
     public void registerIcons(IconRegister register){
+        iconList = new Icon[icons.length];
+        
+        for(int i = 0; i < icons.length; i++)
+        {
+            iconList[i] = register.registerIcon(icons[i]);
+        }
     }
     
     @Override
     public Icon getIconFromDamage(int meta){
-        return this.icons[meta];
+        return iconList[meta];
     }
     
     @Override

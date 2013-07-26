@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
  * 
  * @author Jcm2606
  */
-public class BlockJC extends Block implements IBlockCustomItem {
+public class BlockJC extends Block implements IBlockAddon {
     String rarity;
     
     public BlockJC(int par1, Material par2Material, String par3) {

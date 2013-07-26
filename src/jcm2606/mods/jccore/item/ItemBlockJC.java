@@ -2,7 +2,7 @@ package jcm2606.mods.jccore.item;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.block.IBlockCustomItem;
+import jcm2606.mods.jccore.block.IBlockAddon;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -18,9 +18,9 @@ public class ItemBlockJC extends ItemBlock
     @Override
     public EnumRarity getRarity(ItemStack stack)
     {
-        if(Block.blocksList[stack.itemID] instanceof IBlockCustomItem)
+        if(Block.blocksList[stack.itemID] instanceof IBlockAddon)
         {
-            return ((IBlockCustomItem) Block.blocksList[stack.itemID]).getRarity(stack);
+            return ((IBlockAddon) Block.blocksList[stack.itemID]).getRarity(stack);
         }
         
         return EnumRarity.common;
@@ -29,9 +29,9 @@ public class ItemBlockJC extends ItemBlock
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
     {
-        if(Block.blocksList[stack.itemID] instanceof IBlockCustomItem)
+        if(Block.blocksList[stack.itemID] instanceof IBlockAddon)
         {
-            ((IBlockCustomItem) Block.blocksList[stack.itemID]).addInformation(stack, player, list, b);
+            ((IBlockAddon) Block.blocksList[stack.itemID]).addInformation(stack, player, list, b);
         }
     }
 }

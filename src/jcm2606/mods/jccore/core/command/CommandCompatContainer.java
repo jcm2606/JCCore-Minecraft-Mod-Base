@@ -4,7 +4,10 @@ import java.util.Set;
 
 import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.jccore.lib.Commands;
+import jcm2606.mods.jccore.network.PacketCompatContainerPostUpdate;
 import jcm2606.mods.jccore.network.PacketHandlerCore;
+import jcm2606.mods.jccore.network.PacketType;
+import jcm2606.mods.jccore.util.ChatUtil;
 import jcm2606.mods.jccore.util.GeneralUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommandSender;
@@ -33,8 +36,8 @@ public class CommandCompatContainer {
         
         message = containerNameList.toString().replace("[", "").replace("]", "");
         
-        commandSender.sendChatToPlayer("Current registered containers:");
-        commandSender.sendChatToPlayer(" " + message);
+        ChatUtil.sendTextToCommandSender(commandSender, "Current registered containers:");
+        ChatUtil.sendTextToCommandSender(commandSender, " " + message);
     }
     
     private static void processUpdatePost(ICommandSender commandSender, String[] args)
@@ -44,9 +47,9 @@ public class CommandCompatContainer {
         
         if(GeneralUtil.isClient())
         {
-            Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(PacketHandlerCore.constructCompatContainerUpdatePostPacket(compatContainerName, updateId));
+            Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(PacketType.populatePacket(new PacketCompatContainerPostUpdate(compatContainerName, updateId), PacketHandlerCore.CHANNEL_JCCORE));
         } else {
-            PacketDispatcher.sendPacketToAllPlayers(PacketHandlerCore.constructCompatContainerUpdatePostPacket(compatContainerName, updateId));
+            PacketDispatcher.sendPacketToAllPlayers(PacketType.populatePacket(new PacketCompatContainerPostUpdate(compatContainerName, updateId), PacketHandlerCore.CHANNEL_JCCORE));
         }
     }
 }

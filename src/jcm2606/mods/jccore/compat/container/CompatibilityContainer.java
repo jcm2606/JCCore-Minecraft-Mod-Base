@@ -62,7 +62,7 @@ public abstract class CompatibilityContainer {
      * @param id
      * @param args
      */
-    public static void postUpdateToSubContainers(int id, Object[] args)
+    public static void postUpdateToSubContainers(int id, ContainerEventBase args)
     {
         for(Object obj : subContainerList.values())
         {
@@ -77,7 +77,7 @@ public abstract class CompatibilityContainer {
                     if(annot.value() == id || annot.value() == -1)
                     {
                         try {
-                            method.invoke(obj, null);
+                            method.invoke(obj, args);
                         }
                         catch (IllegalAccessException e) {
                             e.printStackTrace();

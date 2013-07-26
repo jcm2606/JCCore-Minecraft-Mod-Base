@@ -1,9 +1,5 @@
 package jcm2606.mods.jccore.core;
 
-import java.util.HashMap;
-
-import jcm2606.mods.jccore.util.IconIndexer;
-import net.minecraft.util.Icon;
 
 /**
  * Interface template for any classes revolved around object handling ({@link Item} and {@link Block} handling, name handling, recipe handling, etc).
@@ -57,7 +53,7 @@ public interface IObjectCore {
     public void addSmeltingRecipes();
     
     /**
-     * Loads the textures this {@link IObjectCore} is for. Called when {@link ModCompatibility.startObjectLoadingInClass()} is called.
+     * Loads the biomes this {@link IObjectCore} is for. Called when {@link ModCompatibility.startObjectLoadingInClass()} is called.
      */
-    public void loadTextures(HashMap<String, Icon> iconMap, IconIndexer index);
+    public void loadBiomes();
 }

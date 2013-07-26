@@ -1,13 +1,9 @@
 package jcm2606.mods.jccore.compat;
 
-import java.util.HashMap;
-
 import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.jccore.core.IObjectCore;
-import jcm2606.mods.jccore.util.IconIndexer;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.util.Icon;
 
 /**
  * Core class for inter-mod compatibility.
@@ -135,31 +131,6 @@ public class ModCompatibility {
                 IObjectCore objectCore = (IObjectCore) obj;
                 
                 objectCore.loadIDs();
-            }
-        }
-        catch (InstantiationException e) {
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    /**
-     * Starts texture loading in the given {@link Class}. Given {@link Class} MUST implement {@link IObjectCore} for this to work.
-     * 
-     * @param clazz
-     */
-    public void startTextureLoadingInClass(Class<?> clazz, IconIndexer index, HashMap<String, Icon> iconMap)
-    {
-        try {
-            Object obj = clazz.newInstance();
-            
-            if(obj instanceof IObjectCore)
-            {
-                IObjectCore objectCore = (IObjectCore) obj;
-                
-                objectCore.loadTextures(iconMap, index);
             }
         }
         catch (InstantiationException e) {

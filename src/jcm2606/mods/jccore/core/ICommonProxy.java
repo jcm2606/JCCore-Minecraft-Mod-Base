@@ -7,7 +7,9 @@ package jcm2606.mods.jccore.core;
  */
 public interface ICommonProxy {
     /**
-     * Loads the rendering features. Does nothing on the server.
+     * Loads the rendering features.
+     * 
+     * Does nothing on the server.
      */
     public void loadRendering();
 
@@ -17,7 +19,9 @@ public interface ICommonProxy {
     public void loadTileEntities();
 
     /**
-     * Loads the custom rarities for a mod. Does nothing on the server.
+     * Loads the custom rarities for a mod.
+     * 
+     * Does nothing on the server.
      */
     public void loadCustomRarities();
 
@@ -25,4 +29,18 @@ public interface ICommonProxy {
      * Registers the handlers for a mod.
      */
     public void registerHandlers();
+    
+    /**
+     * Loads the keybindings for a mod.
+     * 
+     * Does nothing on the server.
+     */
+    public void loadKeyBindings();
+    
+    /**
+     * Loads the render ids for a mod.
+     * 
+     * Does nothing on the server.
+     */
+    public void loadRenderIds();
 }

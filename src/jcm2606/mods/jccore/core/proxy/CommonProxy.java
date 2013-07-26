@@ -14,4 +14,11 @@ public class CommonProxy implements ICommonProxy {
 
     @Override
     public void registerHandlers() {}
+
+    @Override
+    public void loadKeyBindings() {}
+
+    @Override
+    public void loadRenderIds()
+    {}
 }

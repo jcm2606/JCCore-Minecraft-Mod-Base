@@ -14,6 +14,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -228,7 +229,12 @@ public class GeneralUtil {
 
     public static void registerBlock(net.minecraft.block.Block block)
     {
-        GameRegistry.registerBlock(block, ItemBlockJC.class, block.getUnlocalizedName());
+        registerBlock(block, ItemBlockJC.class);
+    }
+    
+    public static void registerBlock(net.minecraft.block.Block block, Class<? extends ItemBlock> itemBlock)
+    {
+        GameRegistry.registerBlock(block, itemBlock, block.getUnlocalizedName());
     }
 
     public static MovingObjectPosition getTargetBlock(World world, EntityPlayer player, boolean par3, float maxDistance)
