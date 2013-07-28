@@ -97,7 +97,7 @@ public class EntityFXJC extends EntityFX {
         GL11.glDisable(3042);
         GL11.glDisable(3042);
         
-        RenderUtil.instance().bindTexture("minecraft", "particles.png");
+        RenderUtil.instance().bindTexture("minecraft", "textures/particle/particles.png");
         
         GL11.glPopMatrix();
         

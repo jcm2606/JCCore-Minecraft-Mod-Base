@@ -28,11 +28,6 @@ public interface IObjectCore {
     public void loadEnchantments();
     
     /**
-     * Used to load the fluids this {@link IObjectCore} is for. Called when {@link ModCompatibility.startObjectLoadingInClass()} is called.
-     */
-    public void registerFluids();
-    
-    /**
      * Used to add the harvest levels for the blocks this {@link IObjectCore} is for. Called when {@link ModCompatibility.startObjectLoadingInClass()} is called.
      */
     public void addBlockHarvestLevels();
