@@ -13,8 +13,10 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -185,10 +187,28 @@ public class RenderUtil extends TickHandlerClientBase {
     public void renderLabel(String par2Str, double par3, double par5, double par7)
     {
         FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
+        int j = fontrenderer.getStringWidth(par2Str) / 2;
+        
+        this.renderInWorldRect(par3, par5, par7, j, -1, 8);
+        this.renderInWorldString(par2Str, par3, par5, par7, -j, 0);
+    }
+    
+    public void renderInWorldRect(double x, double y, double z, int u, int v)
+    {
+        this.renderInWorldRect(x, y, z, u, v, v);
+    }
+    
+    public void renderInWorldRect(double x, double y, double z, int u, int v, int v2)
+    {
+        this.renderInWorldRect(x, y, z, u, v, v2, 0.0f, 0.0f, 0.0f, 0.25f);
+    }
+    
+    public void renderInWorldRect(double x, double y, double z, int u, int v, int v2, double red, double green, double blue, double alpha)
+    {
         float f = 1.6F;
         float f1 = 0.016666668F * f;
         GL11.glPushMatrix();
-        GL11.glTranslatef((float) par3 + 0.0F, (float) par5, (float) par7);
+        GL11.glTranslatef((float) x + 0.0F, (float) y, (float) z);
         GL11.glNormal3f(0.0F, 1.0F, 0.0F);
         GL11.glRotatef(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
@@ -203,18 +223,46 @@ public class RenderUtil extends TickHandlerClientBase {
 
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         tessellator.startDrawingQuads();
-        int j = fontrenderer.getStringWidth(par2Str) / 2;
-        tessellator.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.25F);
-        tessellator.addVertex(-j - 1, -1 + b0, 0.0D);
-        tessellator.addVertex(-j - 1, 8 + b0, 0.0D);
-        tessellator.addVertex(j + 1, 8 + b0, 0.0D);
-        tessellator.addVertex(j + 1, -1 + b0, 0.0D);
+        tessellator.setColorRGBA_F((float) red, (float) green, (float) blue, (float) alpha);
+        tessellator.addVertex((-u) - 1, v + b0, 0.0D);
+        tessellator.addVertex((-u) - 1, v2 + b0, 0.0D);
+        tessellator.addVertex((u) + 1, v2 + b0, 0.0D);
+        tessellator.addVertex((u) + 1, v + b0, 0.0D);
         tessellator.draw();
+        
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        fontrenderer.drawString(par2Str, -fontrenderer.getStringWidth(par2Str) / 2, b0, 553648127);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glDepthMask(true);
-        fontrenderer.drawString(par2Str, -fontrenderer.getStringWidth(par2Str) / 2, b0, -1);
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_BLEND);
+        
+        GL11.glPopMatrix();
+    }
+    
+    public void renderInWorldString(String string, double x, double y, double z, int u, int v)
+    {
+        FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
+        float f = 1.6F;
+        float f1 = 0.016666668F * f;
+        GL11.glPushMatrix();
+        GL11.glTranslatef((float) x + 0.0F, (float) y, (float) z);
+        GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+        GL11.glScalef(-f1, -f1, f1);
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glDepthMask(false);
+        GL11.glDisable(GL11.GL_DEPTH_TEST);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        Tessellator tessellator = Tessellator.instance;
+        
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        fontrenderer.drawString(string, u, v, 553648127);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glDepthMask(true);
+        fontrenderer.drawString(string, u, v, -1);
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -350,11 +398,9 @@ public class RenderUtil extends TickHandlerClientBase {
       GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
     
-    public int setBrightness(IBlockAccess blockAccess, int i, int j, int k, Block block) {
-        Tessellator tessellator = Tessellator.instance;
+    public int setBrightness(IBlockAccess blockAccess, int i, int j, int k, Block block, Tessellator tessellator) {
         int mb = block.getMixedBrightnessForBlock(blockAccess, i, j, k);
         tessellator.setBrightness(mb);
-
         float f = 1.0F;
 
         int l = block.colorMultiplier(blockAccess, i, j, k);
@@ -373,6 +419,21 @@ public class RenderUtil extends TickHandlerClientBase {
         tessellator.setColorOpaque_F(f * f1, f * f2, f * f3);
         return mb;
       }
+    
+    public static int getBrightnessForRender(Entity entity, double x, double z)
+    {
+      int var2 = MathHelper.floor_double(x);
+      int var3 = MathHelper.floor_double(z);
+
+      if (entity.worldObj.blockExists(var2, 0, var3))
+      {
+        double var4 = (entity.boundingBox.maxY - entity.boundingBox.minY) * 0.66D;
+        int var6 = MathHelper.floor_double(entity.posY - entity.yOffset + var4);
+        return entity.worldObj.getLightBrightnessForSkyBlocks(var2, var6, var3, 2);
+      }
+
+      return 0;
+    }
     
     /**
      * Utility function to draw crossed swuares

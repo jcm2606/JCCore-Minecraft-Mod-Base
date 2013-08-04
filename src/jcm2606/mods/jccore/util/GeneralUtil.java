@@ -102,8 +102,23 @@ public class GeneralUtil {
                 return i;
             }
         }
-        for (int i = preferred - 1; i > 0; i--) {
+        for (int i = preferred; i > 0; i++) {
             if (Block.blocksList[i] == null) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    public static int getFreeItemID(int preferred)
+    {
+        for (int i = preferred; i < 255; i++) {
+            if (Item.itemsList[i] == null) {
+                return i;
+            }
+        }
+        for (int i = preferred; i > 0; i++) {
+            if (Item.itemsList[i] == null) {
                 return i;
             }
         }
