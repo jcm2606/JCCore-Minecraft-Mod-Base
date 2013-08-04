@@ -1,4 +1,4 @@
 JCCore-Minecraft-Mod-Base
 =========================
 
-Repo for JCCore, my mod core.
+Repo for JCCore, a base for all my Minecraft mods.
