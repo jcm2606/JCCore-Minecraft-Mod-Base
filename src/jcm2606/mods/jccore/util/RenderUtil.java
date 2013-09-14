@@ -304,24 +304,48 @@ public class RenderUtil extends TickHandlerClientBase {
     
     public void renderAllSides(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer, Icon tex, boolean allsides)
     {
-      if ((allsides) || (block.shouldSideBeRendered(world, x + 1, y, z, 6))) {
-        renderer.renderFaceZPos(block, x, y, z, tex);
+        Icon[] texArray = new Icon[] {
+                tex,
+                tex,
+                tex,
+                tex,
+                tex,
+                tex
+        };
+        
+        this.renderAllSides(world, x, y, z, block, renderer, texArray, allsides);
     }
-      if ((allsides) || (block.shouldSideBeRendered(world, x - 1, y, z, 6))) {
-        renderer.renderFaceZNeg(block, x, y, z, tex);
-    }
-      if ((allsides) || (block.shouldSideBeRendered(world, x, y, z + 1, 6))) {
-        renderer.renderFaceXNeg(block, x, y, z, tex);
-    }
-      if ((allsides) || (block.shouldSideBeRendered(world, x, y, z - 1, 6))) {
-        renderer.renderFaceXPos(block, x, y, z, tex);
-    }
-      if ((allsides) || (block.shouldSideBeRendered(world, x, y + 1, z, 6))) {
-        renderer.renderFaceYPos(block, x, y, z, tex);
-    }
-      if ((allsides) || (block.shouldSideBeRendered(world, x, y - 1, z, 6))) {
-        renderer.renderFaceYNeg(block, x, y, z, tex);
-    }
+    
+    /**
+     * @param world
+     * @param x
+     * @param y
+     * @param z
+     * @param block
+     * @param renderer
+     * @param texArray South, North, West, East, Top, Bottom
+     * @param allsides
+     */
+    public void renderAllSides(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer, Icon[] texArray, boolean allsides)
+    {
+        if ((allsides) || (!block.shouldSideBeRendered(world, x - 1, y, z, 6))) {
+            renderer.renderFaceZPos(block, x, y, z, texArray[0]);
+        }
+          if ((allsides) || (!block.shouldSideBeRendered(world, x + 1, y, z, 6))) {
+            renderer.renderFaceZNeg(block, x, y, z, texArray[1]);
+        }
+          if ((allsides) || (!block.shouldSideBeRendered(world, x, y, z - 1, 6))) {
+            renderer.renderFaceXNeg(block, x, y, z, texArray[2]);
+        }
+          if ((allsides) || (!block.shouldSideBeRendered(world, x, y, z + 1, 6))) {
+            renderer.renderFaceXPos(block, x, y, z, texArray[3]);
+        }
+          if ((allsides) || (!block.shouldSideBeRendered(world, x, y - 1, z, 6))) {
+            renderer.renderFaceYPos(block, x, y, z, texArray[4]);
+        }
+          if ((allsides) || (!block.shouldSideBeRendered(world, x, y + 1, z, 6))) {
+            renderer.renderFaceYNeg(block, x, y, z, texArray[5]);
+        }
     }
 
     public void renderAllSidesInverted(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer, Icon tex, boolean allsides)

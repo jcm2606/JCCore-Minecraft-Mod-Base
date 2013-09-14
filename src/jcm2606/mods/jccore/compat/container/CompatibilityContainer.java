@@ -62,7 +62,7 @@ public abstract class CompatibilityContainer {
      * @param id
      * @param args
      */
-    public static void postUpdateToSubContainers(int id, ContainerEventBase args)
+    public static void postUpdate(int id, ContainerEventBase args)
     {
         for(Object obj : subContainerList.values())
         {

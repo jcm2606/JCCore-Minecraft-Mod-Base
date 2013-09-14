@@ -1,11 +1,13 @@
 package jcm2606.mods.jccore.core.proxy;
 
-import jcm2606.mods.jccore.core.IClientProxy;
+import jcm2606.mods.jccore.core.IProxyClient;
+import jcm2606.mods.jccore.core.JCCoreEventHandler;
 import jcm2606.mods.jccore.util.RenderUtil;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-public class ClientProxy extends CommonProxy implements IClientProxy {
+public class ClientProxy extends CommonProxy implements IProxyClient {
     @Override
     public void loadRendering() {
         RenderUtil.loadRenderingUtils();
@@ -22,6 +24,7 @@ public class ClientProxy extends CommonProxy implements IClientProxy {
         super.registerHandlers();
         
         TickRegistry.registerTickHandler(new RenderUtil(), Side.CLIENT);
+        MinecraftForge.EVENT_BUS.register(new JCCoreEventHandler());
     }
 
     @Override

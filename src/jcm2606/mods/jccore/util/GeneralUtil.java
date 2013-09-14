@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -24,6 +25,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.storage.AnvilChunkLoader;
 import net.minecraft.world.chunk.storage.IChunkLoader;
 import net.minecraft.world.storage.ISaveHandler;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
@@ -32,6 +34,21 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class GeneralUtil {
+    public static int getBlockIdFromNeighbour(int x, int y, int z, ForgeDirection side, World world)
+    {
+        return world.getBlockId(x + side.offsetX, y + side.offsetY, z + side.offsetZ);
+    }
+    
+    public static TileEntity getBlockTileFromNeighbour(int x, int y, int z, ForgeDirection side, World world)
+    {
+        return world.getBlockTileEntity(x + side.offsetX, y + side.offsetY, z + side.offsetZ);
+    }
+    
+    public static boolean doesNeighbourBlockExist(int x, int y, int z, ForgeDirection side, World world)
+    {
+        return world.getBlockId(x + side.offsetX, y + side.offsetY, z + side.offsetZ) != 0;
+    }
+    
     public static boolean isClient()
     {
         return FMLCommonHandler.instance().getSide().isClient();
@@ -270,5 +287,20 @@ public class GeneralUtil {
         double var21 = maxDistance;
         Vec3 var23 = var13.addVector(var18 * var21, var17 * var21, var20 * var21);
         return world.rayTraceBlocks_do_do(var13, var23, par3, !par3);
+    }
+    
+    public static boolean areStacksEqual(ItemStack stack1, ItemStack stack2, boolean checkDamage)
+    {
+        if(stack1 == null || stack2 == null)
+        {
+            return false;
+        }
+        
+        if(checkDamage)
+        {
+            return stack1.itemID == stack2.itemID && stack1.getItemDamage() == stack2.getItemDamage();
+        } else {
+            return stack1.itemID == stack2.itemID;
+        }
     }
 }

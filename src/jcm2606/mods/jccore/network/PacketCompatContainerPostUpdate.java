@@ -40,6 +40,6 @@ public class PacketCompatContainerPostUpdate extends PacketBase {
     @Override
     public void execute(INetworkManager network, Player player)
     {
-        CompatibilityContainer.getContainerList().get(containerName).postUpdateToSubContainers(updateID, null);
+        CompatibilityContainer.getContainerList().get(containerName).postUpdate(updateID, null);
     }
 }

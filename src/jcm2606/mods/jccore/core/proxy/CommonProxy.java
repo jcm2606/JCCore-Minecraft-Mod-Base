@@ -1,8 +1,8 @@
 package jcm2606.mods.jccore.core.proxy;
 
-import jcm2606.mods.jccore.core.ICommonProxy;
+import jcm2606.mods.jccore.core.IProxyCommon;
 
-public class CommonProxy implements ICommonProxy {
+public class CommonProxy implements IProxyCommon {
     @Override
     public void loadRendering() {}
 
@@ -21,4 +21,11 @@ public class CommonProxy implements ICommonProxy {
     @Override
     public void loadRenderIds()
     {}
+
+    @Override
+    public void loadMobs()
+    {
+        // TODO Auto-generated method stub
+        
+    }
 }

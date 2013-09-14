@@ -5,7 +5,7 @@ package jcm2606.mods.jccore.core;
  * 
  * @author Jcm2606
  */
-public interface ICommonProxy {
+public interface IProxyCommon {
     /**
      * Loads the rendering features.
      * 
@@ -43,4 +43,9 @@ public interface ICommonProxy {
      * Does nothing on the server.
      */
     public void loadRenderIds();
+    
+    /**
+     * Loads the mobs for a mod.
+     */
+    public void loadMobs();
 }
