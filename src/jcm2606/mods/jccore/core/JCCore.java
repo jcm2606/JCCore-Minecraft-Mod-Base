@@ -2,10 +2,9 @@ package jcm2606.mods.jccore.core;
 
 import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.jccore.core.command.CommandJCCore;
-import jcm2606.mods.jccore.core.proxy.CommonProxy;
-import jcm2606.mods.jccore.lib.Reference;
+import jcm2606.mods.jccore.core.lib.Reference;
+import jcm2606.mods.jccore.core.util.LoggerBase;
 import jcm2606.mods.jccore.network.PacketHandlerCore;
-import jcm2606.mods.jccore.util.LoggerBase;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;

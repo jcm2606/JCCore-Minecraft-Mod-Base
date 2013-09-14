@@ -2,7 +2,7 @@ package jcm2606.mods.jccore.core.command;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.lib.Commands;
+import jcm2606.mods.jccore.core.lib.Commands;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;

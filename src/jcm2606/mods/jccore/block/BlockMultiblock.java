@@ -1,7 +1,7 @@
 package jcm2606.mods.jccore.block;
 
-import jcm2606.mods.jccore.tile.ITileEntityMultiblock;
-import jcm2606.mods.jccore.tile.TileEntityJC;
+import jcm2606.mods.jccore.block.tile.ITileEntityMultiblock;
+import jcm2606.mods.jccore.block.tile.TileEntityJC;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
