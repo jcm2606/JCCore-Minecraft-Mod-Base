@@ -2,8 +2,8 @@ package jcm2606.mods.jccore.block;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.helper.RarityHelper;
-import jcm2606.mods.jccore.tile.TileEntityJC;
+import jcm2606.mods.jccore.block.tile.TileEntityJC;
+import jcm2606.mods.jccore.core.helper.RarityHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
