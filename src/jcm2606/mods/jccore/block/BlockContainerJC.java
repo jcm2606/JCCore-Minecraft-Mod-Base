@@ -2,7 +2,7 @@ package jcm2606.mods.jccore.block;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.core.helper.RarityHelper;
+import jcm2606.mods.jccore.helper.RarityHelper;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;

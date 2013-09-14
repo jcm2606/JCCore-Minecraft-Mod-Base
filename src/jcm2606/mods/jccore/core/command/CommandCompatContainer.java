@@ -3,12 +3,12 @@ package jcm2606.mods.jccore.core.command;
 import java.util.Set;
 
 import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
-import jcm2606.mods.jccore.core.lib.Commands;
-import jcm2606.mods.jccore.core.util.ChatUtil;
-import jcm2606.mods.jccore.core.util.GeneralUtil;
+import jcm2606.mods.jccore.lib.Commands;
 import jcm2606.mods.jccore.network.PacketCompatContainerPostUpdate;
 import jcm2606.mods.jccore.network.PacketHandlerCore;
 import jcm2606.mods.jccore.network.PacketType;
+import jcm2606.mods.jccore.util.ChatUtil;
+import jcm2606.mods.jccore.util.GeneralUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
