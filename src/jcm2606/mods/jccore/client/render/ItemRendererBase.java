@@ -8,7 +8,8 @@ import net.minecraftforge.client.IItemRenderer;
  * 
  * @author Jcm2606
  */
-public abstract class ItemRendererBase implements IItemRenderer {
+public abstract class ItemRendererBase implements IItemRenderer
+{
     public float entityX = -1f;
     public float entityY = -1f;
     public float entityZ = -1f;
@@ -26,24 +27,25 @@ public abstract class ItemRendererBase implements IItemRenderer {
     public float invZ = 0;
     
     public ItemRendererBase()
-    {}
+    {
+    }
     
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type)
     {
         return true;
     }
-
+    
     @Override
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
     {
         return true;
     }
-
+    
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
-        switch(type)
+        switch (type)
         {
             case ENTITY:
                 renderEntity(entityX, entityY, entityZ, item);

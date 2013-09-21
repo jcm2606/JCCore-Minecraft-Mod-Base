@@ -8,11 +8,14 @@ import java.lang.annotation.Target;
 /**
  * Marks a particular method as a {@link CompatibilityContainer} update handler.
  * 
- * @param value The unique handler ID for these handler methods. Is {@link CompatibilityContainer} unique. Defaults to -1 (wildcard)
+ * @param value
+ *            The unique handler ID for these handler methods. Is
+ *            {@link CompatibilityContainer} unique. Defaults to -1 (wildcard)
  */
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface HandlerMethod {
+public @interface HandlerMethod
+{
     public int value() default -1;
 }

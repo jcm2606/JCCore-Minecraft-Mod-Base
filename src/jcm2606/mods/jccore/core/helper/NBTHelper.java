@@ -30,110 +30,136 @@ public class NBTHelper
         }
         return null;
     }
-
+    
     public static void setInt(NBTTagCompound nbt, String valueName, int value)
     {
         nbt.setInteger(valueName, value);
     }
-
+    
     public static void setString(NBTTagCompound nbt, String valueName, String value)
     {
         nbt.setString(valueName, value);
     }
-
+    
     public static void setBoolean(NBTTagCompound nbt, String valueName, boolean value)
     {
         nbt.setBoolean(valueName, value);
     }
-
+    
     public static void setIntArray(NBTTagCompound nbt, String valueName, int[] value)
     {
         nbt.setIntArray(valueName, value);
     }
-
+    
     public static int[] getIntArray(NBTTagCompound nbt, String valueName)
     {
         return nbt.getIntArray(valueName);
     }
-
+    
     public static int getInt(NBTTagCompound nbt, String valueName)
     {
         if (nbt != null)
         {
             return nbt.getInteger(valueName);
         }
-
+        
         return -1;
     }
-
+    
     public static String getString(NBTTagCompound nbt, String valueName)
     {
         if (nbt != null)
         {
             return nbt.getString(valueName);
         }
-
+        
         return "";
     }
-
+    
     public static boolean getBoolean(NBTTagCompound nbt, String valueName)
     {
         if (nbt != null)
         {
             return nbt.getBoolean(valueName);
         }
-
+        
         return false;
     }
-
-    public static void saveData(WorldServer world, NBTTagCompound tag, String fileName) {
-        try
-        {
-          File file = new File(world.getChunkSaveLocation(), fileName + ".dat");
-          DataOutputStream dos = null;
-        try
-        {
-            dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
-        }
-        catch (FileNotFoundException e1)
-        {}
-          try
-          {
-            CompressedStreamTools.write(tag, dos);
-          }
-          catch (IOException e) {
-            FMLLog.log(Level.WARNING, e, "Unable to save custom NBT map '" + fileName + "' in world directory '" + world.getSaveHandler().getWorldDirectoryName() + "'.", new Object[] { file.getAbsolutePath() });
-            return;
-          }
-          finally {
-            try {
-              if (dos != null)
-              {
-                  dos.close();
-              } 
-            }
-            catch (IOException f) {}
-          }
-        } finally {}
+    
+    public static void setDouble(NBTTagCompound nbt, String name, double d)
+    {
+        nbt.setDouble(name, d);
     }
-
+    
+    public static double getDouble(NBTTagCompound nbt, String name)
+    {
+        if(nbt != null)
+        {
+            return nbt.getDouble(name);
+        }
+        
+        return 0;
+    }
+    
+    public static void saveData(WorldServer world, NBTTagCompound tag, String fileName)
+    {
+        try
+        {
+            File file = new File(world.getChunkSaveLocation(), fileName + ".dat");
+            DataOutputStream dos = null;
+            try
+            {
+                dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+            }
+            catch (FileNotFoundException e1)
+            {}
+            try
+            {
+                CompressedStreamTools.write(tag, dos);
+            }
+            catch (IOException e)
+            {
+                FMLLog.log(Level.WARNING, e, "Unable to save custom NBT map '" + fileName + "' in world directory '" + world.getSaveHandler()
+                        .getWorldDirectoryName() + "'.", new Object[]
+                { file.getAbsolutePath() });
+                return;
+            }
+            finally
+            {
+                try
+                {
+                    if (dos != null)
+                    {
+                        dos.close();
+                    }
+                }
+                catch (IOException f)
+                {}
+            }
+        }
+        finally
+        {}
+    }
+    
     public static NBTTagCompound loadData(WorldServer world, String fileName)
     {
         WorldServer worldServer = world;
         File file = new File(worldServer.getChunkSaveLocation(), fileName + ".dat");
         if ((file.exists()) && (file.isFile()))
         {
-          NBTTagCompound nbt;
-          try
-          {
-              nbt = CompressedStreamTools.read(file);
-          }
-          catch (IOException e)
-          {
-            FMLLog.log(Level.WARNING, e, "Unable to save custom NBT map '" + fileName + "' in world directory '" + world.getSaveHandler().getWorldDirectoryName() + "'.", new Object[] { file.getAbsolutePath() });
-            return null;
-          }
-          return nbt;
+            NBTTagCompound nbt;
+            try
+            {
+                nbt = CompressedStreamTools.read(file);
+            }
+            catch (IOException e)
+            {
+                FMLLog.log(Level.WARNING, e, "Unable to save custom NBT map '" + fileName + "' in world directory '" + world.getSaveHandler()
+                        .getWorldDirectoryName() + "'.", new Object[]
+                { file.getAbsolutePath() });
+                return null;
+            }
+            return nbt;
         }
         return null;
     }

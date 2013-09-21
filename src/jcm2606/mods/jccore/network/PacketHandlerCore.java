@@ -5,7 +5,8 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
-public class PacketHandlerCore implements IPacketHandler {
+public class PacketHandlerCore implements IPacketHandler
+{
     public static final String CHANNEL_JCCORE = "JCCore";
     
     @Override

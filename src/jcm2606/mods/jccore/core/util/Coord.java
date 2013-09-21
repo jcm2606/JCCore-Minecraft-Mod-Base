@@ -2,7 +2,8 @@ package jcm2606.mods.jccore.core.util;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class Coord {
+public class Coord
+{
     public double x;
     public double y;
     public double z;
@@ -30,10 +31,11 @@ public class Coord {
     
     public static Coord constructFromNBT(NBTTagCompound tag)
     {
-        if(tag.hasKey("x") && tag.hasKey("y") && tag.hasKey("z"))
+        if (tag.hasKey("x") && tag.hasKey("y") && tag.hasKey("z"))
         {
             return new Coord(tag.getInteger("x"), tag.getInteger("y"), tag.getInteger("z"));
-        } else {
+        } else
+        {
             return null;
         }
     }

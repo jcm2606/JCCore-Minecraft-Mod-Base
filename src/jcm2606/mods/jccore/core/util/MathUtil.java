@@ -7,7 +7,8 @@ package jcm2606.mods.jccore.core.util;
  * 
  * @author Jcm2606
  */
-public class MathUtil {
+public class MathUtil
+{
     public static boolean isDivisibleBy(int diviser, int value)
     {
         return value % diviser == 0;

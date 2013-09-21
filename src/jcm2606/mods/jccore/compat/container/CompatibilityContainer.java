@@ -5,13 +5,16 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 
 /**
- * Compatibility Container base class. Central class for all classes which are a form of {@link CompatibilityContainer}.
+ * Compatibility Container base class. Central class for all classes which are a
+ * form of {@link CompatibilityContainer}.
  * 
- * A compatibility container is essentially a custom event handling class which allows a specific mod using JCCore to
- * handle events. The Forge/FML event system CAN be used, however this system plans to have certain features the Forge/FML
- * event system and EventBus do not have.
+ * A compatibility container is essentially a custom event handling class which
+ * allows a specific mod using JCCore to handle events. The Forge/FML event
+ * system CAN be used, however this system plans to have certain features the
+ * Forge/FML event system and EventBus do not have.
  */
-public abstract class CompatibilityContainer {
+public abstract class CompatibilityContainer
+{
     private static HashMap<String, Object> subContainerList = new HashMap<String, Object>();
     private static HashMap<String, CompatibilityContainer> containerList = new HashMap<String, CompatibilityContainer>();
     
@@ -23,69 +26,78 @@ public abstract class CompatibilityContainer {
     public static void registerSubContainer(Class<?> clazz)
     {
         Object obj = null;
-        try {
+        try
+        {
             obj = clazz.newInstance();
         }
-        catch (InstantiationException e) {
+        catch (InstantiationException e)
+        {
             e.printStackTrace();
         }
-        catch (IllegalAccessException e) {
+        catch (IllegalAccessException e)
+        {
             e.printStackTrace();
         }
         
-        if(obj == null)
+        if (obj == null)
         {
             throw new RuntimeException("Error: Could not get instance of class " + clazz.getSimpleName() + ".");
         }
         
-        if(clazz.isAnnotationPresent(SubContainer.class))
+        if (clazz.isAnnotationPresent(SubContainer.class))
         {
             SubContainer annot = clazz.getAnnotation(SubContainer.class);
             
-            if(annot == null)
+            if (annot == null)
             {
                 throw new RuntimeException("Error: Could not get instance of annotation.");
             }
             
-            if(annot.value() != "")
+            if (annot.value() != "")
             {
                 subContainerList.put(annot.value(), obj);
-            } else {
+            } else
+            {
                 throw new RuntimeException("Unexpected error ocurred.");
             }
         }
     }
     
     /**
-     * Post an update to all {@link SubContainer}s registered under this container with the update id given. -1 for wildcard.
+     * Post an update to all {@link SubContainer}s registered under this
+     * container with the update id given. -1 for wildcard.
      * 
      * @param id
      * @param args
      */
     public static void postUpdate(int id, ContainerEventBase args)
     {
-        for(Object obj : subContainerList.values())
+        for (Object obj : subContainerList.values())
         {
             Class<?> clazz = obj.getClass();
             
-            for(Method method : clazz.getMethods())
+            for (Method method : clazz.getMethods())
             {
-                if(method.isAnnotationPresent(HandlerMethod.class))
+                if (method.isAnnotationPresent(HandlerMethod.class))
                 {
                     HandlerMethod annot = method.getAnnotation(HandlerMethod.class);
                     
-                    if(annot.value() == id || annot.value() == -1)
+                    if (annot.value() == id || annot.value() == -1)
                     {
-                        try {
+                        try
+                        {
                             method.invoke(obj, args);
                         }
-                        catch (IllegalAccessException e) {
+                        catch (IllegalAccessException e)
+                        {
                             e.printStackTrace();
                         }
-                        catch (IllegalArgumentException e) {
+                        catch (IllegalArgumentException e)
+                        {
                             e.printStackTrace();
                         }
-                        catch (InvocationTargetException e) {
+                        catch (InvocationTargetException e)
+                        {
                             e.printStackTrace();
                         }
                     }
@@ -95,7 +107,8 @@ public abstract class CompatibilityContainer {
     }
     
     /**
-     * Register the given {@link CompatibilityContainer}. Not required, however is recommended for compatibility reasons.
+     * Register the given {@link CompatibilityContainer}. Not required, however
+     * is recommended for compatibility reasons.
      * 
      * @param container
      */

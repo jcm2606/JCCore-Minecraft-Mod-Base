@@ -12,9 +12,10 @@ public class JCCoreEventHandler
     {
         Block block = Block.blocksList[event.player.worldObj.getBlockId(event.target.blockX, event.target.blockY, event.target.blockZ)];
         
-        if(block instanceof IBlockHighlightRenderHandler)
+        if (block instanceof IBlockHighlightRenderHandler)
         {
-            ((IBlockHighlightRenderHandler) block).onHighlightRender(event.context, event.player, event.target, event.subID, event.currentItem, event.partialTicks);
+            ((IBlockHighlightRenderHandler) block).onHighlightRender(event.context, event.player, event.target, event.subID, event.currentItem,
+                    event.partialTicks);
         }
     }
 }

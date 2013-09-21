@@ -11,14 +11,15 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBlockJC extends ItemBlock
 {
-    public ItemBlockJC(int par1) {
+    public ItemBlockJC(int par1)
+    {
         super(par1);
     }
     
     @Override
     public EnumRarity getRarity(ItemStack stack)
     {
-        if(Block.blocksList[stack.itemID] instanceof IBlockAddon)
+        if (Block.blocksList[stack.itemID] instanceof IBlockAddon)
         {
             return ((IBlockAddon) Block.blocksList[stack.itemID]).getRarity(stack);
         }
@@ -29,7 +30,7 @@ public class ItemBlockJC extends ItemBlock
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
     {
-        if(Block.blocksList[stack.itemID] instanceof IBlockAddon)
+        if (Block.blocksList[stack.itemID] instanceof IBlockAddon)
         {
             ((IBlockAddon) Block.blocksList[stack.itemID]).addInformation(stack, player, list, b);
         }

@@ -5,26 +5,27 @@ package jcm2606.mods.jccore.core;
  * 
  * @author Jcm2606
  */
-public interface IProxyCommon {
+public interface IProxyCommon
+{
     /**
      * Loads the rendering features.
      * 
      * Does nothing on the server.
      */
     public void loadRendering();
-
+    
     /**
      * Loads the TileEntity's for a mod.
      */
     public void loadTileEntities();
-
+    
     /**
      * Loads the custom rarities for a mod.
      * 
      * Does nothing on the server.
      */
     public void loadCustomRarities();
-
+    
     /**
      * Registers the handlers for a mod.
      */

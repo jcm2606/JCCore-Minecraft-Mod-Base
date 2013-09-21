@@ -3,7 +3,8 @@ package jcm2606.mods.jccore.core.util;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.ResourceLocation;
 
-public class ConvertUtil {
+public class ConvertUtil
+{
     public static ResourceLocation getResourceLocation(String modid, String location)
     {
         return new ResourceLocation(modid, location);

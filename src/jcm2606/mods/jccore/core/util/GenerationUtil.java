@@ -13,7 +13,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
  * 
  * @author Jcm2606
  */
-public class GenerationUtil {
+public class GenerationUtil
+{
     /**
      * Add an Overworld ore generation entry with ease.
      * 
@@ -28,9 +29,9 @@ public class GenerationUtil {
      */
     public static void addOreGen(int maxYLevel, int blockID, int rarity, int veinSize, int blockX, int blockZ, Random rand, World world)
     {
-        for(int i = 0; i < rarity; i++)
+        for (int i = 0; i < rarity; i++)
         {
-            int Xcoord = blockX + rand .nextInt(16);
+            int Xcoord = blockX + rand.nextInt(16);
             int Ycoord = rand.nextInt(maxYLevel);
             int Zcoord = blockZ + rand.nextInt(16);
             
@@ -52,9 +53,9 @@ public class GenerationUtil {
      */
     public static void addNetherOreGen(int maxYLevel, int blockID, int rarity, int veinSize, int blockX, int blockZ, Random rand, World world)
     {
-        for(int i = 0; i < rarity; i++)
+        for (int i = 0; i < rarity; i++)
         {
-            int Xcoord = blockX + rand .nextInt(16);
+            int Xcoord = blockX + rand.nextInt(16);
             int Ycoord = rand.nextInt(maxYLevel);
             int Zcoord = blockZ + rand.nextInt(16);
             
@@ -74,7 +75,7 @@ public class GenerationUtil {
      */
     public static void addStructureGen(WorldGenerator generator, int blockX, int blockZ, int occurance, Random rand, World world)
     {
-        if(rand.nextInt(100) <= occurance)
+        if (rand.nextInt(100) <= occurance)
         {
             int Xcoord1 = blockX + rand.nextInt(16);
             int Ycoord1 = rand.nextInt(60);
@@ -86,7 +87,7 @@ public class GenerationUtil {
     
     public static void addFlowerGen(int blockID, int blockX, int blockZ, int occurance, int spread, Random rand, World world)
     {
-        if(rand.nextInt(100) <= occurance)
+        if (rand.nextInt(100) <= occurance)
         {
             int Xcoord1 = blockX + rand.nextInt(spread);
             int Ycoord1 = rand.nextInt(128);

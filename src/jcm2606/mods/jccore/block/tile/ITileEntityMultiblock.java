@@ -2,26 +2,15 @@ package jcm2606.mods.jccore.block.tile;
 
 import net.minecraft.tileentity.TileEntity;
 
-
+/**
+ * Base interface for any {@link TileEntity} based Multi-Block structures
+ */
 public interface ITileEntityMultiblock
 {
     /**
-     *          FORWARD     BACKWARD
-     * North:   -z              +z
-     * South:   +z              -z
-     * East:    +x              -x
-     * West:    -x              +x
+     * Call when you wish to detect whether this multiblock structure is formed correctly
      * 
-     * Should move BACKWARD for depth (facing = direction of block face, not direction of player looking at face)
+     * @return Is the multiblock structure formed correctly
      */
     public boolean isFormedCorrectly();
-    public TileEntity getPrimaryTileEntity();
-    public void invalidate();
-    public void validate();
-    public boolean isValid();
-    public int getDimensionX();
-    public int getDimensionY();
-    public int getDimensionZ();
-    public boolean hasCentreBlockClear();
-    public int getStructureBlockID();
 }

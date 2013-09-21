@@ -5,7 +5,8 @@ import java.util.logging.Logger;
 
 import cpw.mods.fml.common.FMLLog;
 
-public class LoggerBase {
+public class LoggerBase
+{
     private final Logger logger;
     
     public LoggerBase(String name)

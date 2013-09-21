@@ -7,5 +7,6 @@ import net.minecraft.util.MovingObjectPosition;
 
 public interface IBlockHighlightRenderHandler
 {
-    public void onHighlightRender(RenderGlobal context, EntityPlayer player, MovingObjectPosition target, int subID, ItemStack currentItem, float partialTicks);
+    public void onHighlightRender(RenderGlobal context, EntityPlayer player, MovingObjectPosition target, int subID, ItemStack currentItem,
+            float partialTicks);
 }

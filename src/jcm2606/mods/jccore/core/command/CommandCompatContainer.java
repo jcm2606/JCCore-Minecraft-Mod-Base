@@ -14,17 +14,19 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
-public class CommandCompatContainer {
+public class CommandCompatContainer
+{
     public static void processCommand(ICommandSender commandSender, String args[])
     {
-        if(args[1].equalsIgnoreCase(Commands.COMMAND_CONTAINER_LIST))
+        if (args[1].equalsIgnoreCase(Commands.COMMAND_CONTAINER_LIST))
         {
             processList(commandSender);
         } else
-            if(args[1].equalsIgnoreCase(Commands.COMMAND_CONTAINER_POST_UPDATE))
+            if (args[1].equalsIgnoreCase(Commands.COMMAND_CONTAINER_POST_UPDATE))
             {
                 processUpdatePost(commandSender, args);
-            } else {
+            } else
+            {
                 throw new WrongUsageException("Command entered is not valid.");
             }
     }
@@ -45,11 +47,14 @@ public class CommandCompatContainer {
         String compatContainerName = args[2];
         int updateId = Integer.valueOf(args[3]);
         
-        if(GeneralUtil.isClient())
+        if (GeneralUtil.isClient())
         {
-            Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(PacketType.populatePacket(new PacketCompatContainerPostUpdate(compatContainerName, updateId), PacketHandlerCore.CHANNEL_JCCORE));
-        } else {
-            PacketDispatcher.sendPacketToAllPlayers(PacketType.populatePacket(new PacketCompatContainerPostUpdate(compatContainerName, updateId), PacketHandlerCore.CHANNEL_JCCORE));
+            Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(PacketType.populatePacket(new PacketCompatContainerPostUpdate(
+                    compatContainerName, updateId), PacketHandlerCore.CHANNEL_JCCORE));
+        } else
+        {
+            PacketDispatcher.sendPacketToAllPlayers(PacketType.populatePacket(new PacketCompatContainerPostUpdate(compatContainerName, updateId),
+                    PacketHandlerCore.CHANNEL_JCCORE));
         }
     }
 }

@@ -8,15 +8,18 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
  * 
  * @author Jcm2606
  */
-public abstract class DamageSourceJC extends DamageSource {
+public abstract class DamageSourceJC extends DamageSource
+{
     public final String PLAYER_NAME_CHARACTER = "%1$s";
     
-    public DamageSourceJC(String name) {
+    public DamageSourceJC(String name)
+    {
         super(name);
     }
     
     /**
-     * Allows any custom {@link DamageSource} to have a custom death message with ease.
+     * Allows any custom {@link DamageSource} to have a custom death message
+     * with ease.
      * 
      * @param message
      */

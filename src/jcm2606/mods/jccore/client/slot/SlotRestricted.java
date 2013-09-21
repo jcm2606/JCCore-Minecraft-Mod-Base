@@ -18,14 +18,15 @@ public class SlotRestricted extends Slot
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        for(ItemStack stack2 : allowedItems)
+        for (ItemStack stack2 : allowedItems)
         {
-            if(stack.isItemEqual(stack2))
+            if (stack.isItemEqual(stack2))
             {
-                if(damageRestrictions)
+                if (damageRestrictions)
                 {
                     return stack.getItemDamage() == stack2.getItemDamage();
-                } else {
+                } else
+                {
                     return true;
                 }
             }

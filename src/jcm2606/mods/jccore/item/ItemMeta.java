@@ -13,12 +13,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 /**
  * Thanks to ApexAPI for the code used for this class.
  */
-public class ItemMeta extends Item{
+public class ItemMeta extends Item
+{
     private final String[] names;
     private final String[] icons;
     private Icon[] iconList;
     
-    public ItemMeta(int id, String[] names, String[] icons){
+    public ItemMeta(int id, String[] names, String[] icons)
+    {
         super(id);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
@@ -27,29 +29,34 @@ public class ItemMeta extends Item{
     }
     
     @Override
-    public void registerIcons(IconRegister register){
+    public void registerIcons(IconRegister register)
+    {
         iconList = new Icon[icons.length];
         
-        for(int i = 0; i < icons.length; i++)
+        for (int i = 0; i < icons.length; i++)
         {
             iconList[i] = register.registerIcon(icons[i]);
         }
     }
     
     @Override
-    public Icon getIconFromDamage(int meta){
+    public Icon getIconFromDamage(int meta)
+    {
         return iconList[meta];
     }
     
     @Override
-    public String getUnlocalizedName(ItemStack stack){
+    public String getUnlocalizedName(ItemStack stack)
+    {
         return this.names[stack.getItemDamage()];
     }
     
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(int itemID, CreativeTabs tab, List list){
-        for(int i = 0; i < this.icons.length; i++){
+    public void getSubItems(int itemID, CreativeTabs tab, List list)
+    {
+        for (int i = 0; i < this.icons.length; i++)
+        {
             list.add(new ItemStack(itemID, 1, i));
         }
     }

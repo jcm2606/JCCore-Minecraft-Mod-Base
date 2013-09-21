@@ -10,7 +10,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * Base class for any {@link ITickHandler} classes for the server-side logic of the game.
+ * Base class for any {@link ITickHandler} classes for the server-side logic of
+ * the game.
  * 
  * @author Jcm2606
  */
@@ -45,19 +46,22 @@ public abstract class TickHandlerServerBase implements ITickHandler
     public abstract void onServerTick();
     
     @Override
-    public void tickStart(EnumSet<TickType> type, Object... tickData) {}
-
+    public void tickStart(EnumSet<TickType> type, Object... tickData)
+    {
+    }
+    
     @Override
-    public void tickEnd(EnumSet<TickType> type, Object... tickData) {
+    public void tickEnd(EnumSet<TickType> type, Object... tickData)
+    {
         if (type.equals(EnumSet.of(TickType.WORLDLOAD)))
         {
             onServerWorldLoad((World) tickData[0]);
         } else
-            if(type.equals(EnumSet.of(TickType.WORLD)))
+            if (type.equals(EnumSet.of(TickType.WORLD)))
             {
                 onServerWorldTick((World) tickData[0]);
             } else
-                if(type.equals(EnumSet.of(TickType.PLAYER)))
+                if (type.equals(EnumSet.of(TickType.PLAYER)))
                 {
                     onServerPlayerTick((EntityPlayer) tickData[0], (World) tickData[1]);
                 } else
@@ -65,15 +69,16 @@ public abstract class TickHandlerServerBase implements ITickHandler
                     onServerTick();
                 }
     }
-
+    
     @Override
     public EnumSet<TickType> ticks()
     {
         return EnumSet.of(TickType.WORLDLOAD, TickType.SERVER, TickType.WORLD, TickType.PLAYER);
     }
-
+    
     @Override
-    public String getLabel() {
+    public String getLabel()
+    {
         return null;
     }
 }

@@ -12,21 +12,25 @@ import org.lwjgl.opengl.GL11;
  * 
  * @author Jcm2606
  */
-public class EntityFXJC extends EntityFX {
+public class EntityFXJC extends EntityFX
+{
     public int blendMode = 771;
     public boolean shrink = false;
     public String modid;
     
-    public EntityFXJC(World par1World, double par2, double par4, double par6, double par8, double par10, double par12) {
+    public EntityFXJC(World par1World, double par2, double par4, double par6, double par8, double par10, double par12)
+    {
         super(par1World, par2, par4, par6, par8, par10, par12);
     }
     
-    protected EntityFXJC(World par1World, double par2, double par4, double par6) {
+    protected EntityFXJC(World par1World, double par2, double par4, double par6)
+    {
         super(par1World, par2, par4, par6);
     }
     
     /**
-     * Draw the particle with the textures being provided by the given spritesheet.
+     * Draw the particle with the textures being provided by the given
+     * spritesheet.
      * 
      * @param spriteSheet
      * @param tessellator
@@ -37,11 +41,12 @@ public class EntityFXJC extends EntityFX {
      * @param f4
      * @param f5
      */
-    public void drawParticle(String spriteSheet, Tessellator tessellator, float f, float f1,
-            float f2, float f3, float f4, float f5) {
+    public void drawParticle(String spriteSheet, Tessellator tessellator, float f, float f1, float f2, float f3, float f4, float f5)
+    {
         boolean wasDrawing = tessellator.isDrawing;
-
-        if (wasDrawing) {
+        
+        if (wasDrawing)
+        {
             tessellator.draw();
         }
         
@@ -57,16 +62,17 @@ public class EntityFXJC extends EntityFX {
         GL11.glPushMatrix();
         
         GL11.glDepthMask(false);
-
+        
         float f6 = this.particleTextureIndexX / 16.0F;
         float f7 = f6 + 0.0624375F;
         float f8 = this.particleTextureIndexY / 16.0F;
         float f9 = f8 + 0.0624375F;
         float f10 = 0.1F * this.particleScale;
-        if (this.shrink) {
+        if (this.shrink)
+        {
             f10 *= (this.particleMaxAge - this.particleAge + 1) / this.particleMaxAge;
         }
-
+        
         if (this.particleIcon != null)
         {
             f6 = this.particleIcon.getMinU();
@@ -74,10 +80,10 @@ public class EntityFXJC extends EntityFX {
             f8 = this.particleIcon.getMinV();
             f9 = this.particleIcon.getMaxV();
         }
-
-        float f11 = (float)(this.prevPosX + (this.posX - this.prevPosX) * f - interpPosX);
-        float f12 = (float)(this.prevPosY + (this.posY - this.prevPosY) * f - interpPosY);
-        float f13 = (float)(this.prevPosZ + (this.posZ - this.prevPosZ) * f - interpPosZ);
+        
+        float f11 = (float) (this.prevPosX + (this.posX - this.prevPosX) * f - interpPosX);
+        float f12 = (float) (this.prevPosY + (this.posY - this.prevPosY) * f - interpPosY);
+        float f13 = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * f - interpPosZ);
         float f14 = 1.0F;
         tessellator.startDrawingQuads();
         tessellator.setBrightness(300);
@@ -92,7 +98,7 @@ public class EntityFXJC extends EntityFX {
         GL11.glDepthMask(true);
         
         GL11.glPopMatrix();
-
+        
         GL11.glDisable(32826);
         GL11.glDisable(3042);
         GL11.glDisable(3042);
@@ -101,7 +107,8 @@ public class EntityFXJC extends EntityFX {
         
         GL11.glPopMatrix();
         
-        if (wasDrawing) {
+        if (wasDrawing)
+        {
             tessellator.startDrawingQuads();
         }
     }

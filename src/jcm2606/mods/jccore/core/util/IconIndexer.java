@@ -7,16 +7,19 @@ import java.util.HashMap;
  * 
  * @author ApexAPI Dev Team
  */
-public class IconIndexer {
+public class IconIndexer
+{
     public static String modid;
     
     public static HashMap<String, String> iconMap = new HashMap<String, String>();
     
-    public IconIndexer(String modid) {
+    public IconIndexer(String modid)
+    {
         this.modid = modid;
     }
     
-    public static String getIcon(String name) {
+    public static String getIcon(String name)
+    {
         return iconMap.get(modid + ":" + name);
     }
     

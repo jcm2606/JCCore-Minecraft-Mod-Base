@@ -13,7 +13,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * Base class for any {@link ITickHandler} classes for the client-side of the game's logic.
+ * Base class for any {@link ITickHandler} classes for the client-side of the
+ * game's logic.
  * 
  * @author Jcm2606
  */
@@ -21,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public abstract class TickHandlerClientBase implements ITickHandler
 {
     boolean clientWorldLoaded;
-
+    
     /**
      * Hook for client world loading.
      * 
@@ -62,49 +63,54 @@ public abstract class TickHandlerClientBase implements ITickHandler
     public abstract void onGUITick(Minecraft mc, GuiScreen guiscreen);
     
     @Override
-    public void tickStart(EnumSet<TickType> type, Object... tickData) {}
-
+    public void tickStart(EnumSet<TickType> type, Object... tickData)
+    {
+    }
+    
     @Override
-    public void tickEnd(EnumSet<TickType> type, Object... tickData) {
+    public void tickEnd(EnumSet<TickType> type, Object... tickData)
+    {
         if (type.equals(EnumSet.of(TickType.RENDER)))
         {
             onHUDTick(Minecraft.getMinecraft());
-        }
-        else if (type.equals(EnumSet.of(TickType.CLIENT)))
-        {
-            GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
-            if (guiscreen != null)
+        } else
+            if (type.equals(EnumSet.of(TickType.CLIENT)))
             {
-                onGUITick(Minecraft.getMinecraft(), guiscreen);
-                
-                if(guiscreen != new GuiIngameMenu())
+                GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
+                if (guiscreen != null)
                 {
-                    if(clientWorldLoaded && FMLClientHandler.instance().getClient().theWorld == null)
+                    onGUITick(Minecraft.getMinecraft(), guiscreen);
+                    
+                    if (guiscreen != new GuiIngameMenu())
                     {
-                        clientWorldLoaded = false;
-                        onClientWorldUnload(Minecraft.getMinecraft(), FMLClientHandler.instance().getClient().theWorld);
+                        if (clientWorldLoaded && FMLClientHandler.instance().getClient().theWorld == null)
+                        {
+                            clientWorldLoaded = false;
+                            onClientWorldUnload(Minecraft.getMinecraft(), FMLClientHandler.instance().getClient().theWorld);
+                        }
+                    }
+                } else
+                {
+                    onClientWorldTick(Minecraft.getMinecraft(), FMLClientHandler.instance().getClient().theWorld);
+                    
+                    if (!clientWorldLoaded && FMLClientHandler.instance().getClient().theWorld != null)
+                    {
+                        clientWorldLoaded = true;
+                        onClientWorldLoad(Minecraft.getMinecraft(), FMLClientHandler.instance().getClient().theWorld);
                     }
                 }
-            } else {
-                onClientWorldTick(Minecraft.getMinecraft(), FMLClientHandler.instance().getClient().theWorld);
-                
-                if(!clientWorldLoaded && FMLClientHandler.instance().getClient().theWorld != null)
-                {
-                    clientWorldLoaded = true;
-                    onClientWorldLoad(Minecraft.getMinecraft(), FMLClientHandler.instance().getClient().theWorld);
-                }
             }
-        }
     }
-
+    
     @Override
     public EnumSet<TickType> ticks()
     {
         return EnumSet.of(TickType.RENDER, TickType.CLIENT);
     }
-
+    
     @Override
-    public String getLabel() {
+    public String getLabel()
+    {
         return null;
     }
 }

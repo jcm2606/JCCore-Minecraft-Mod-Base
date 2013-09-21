@@ -8,11 +8,13 @@ import java.lang.annotation.Target;
 /**
  * Marks a particular class as a {@link CompatibilityContainer} SubContainer.
  * 
- * @param value The unique SubContainer name.
+ * @param value
+ *            The unique SubContainer name.
  */
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface SubContainer {
+public @interface SubContainer
+{
     public String value() default "";
 }

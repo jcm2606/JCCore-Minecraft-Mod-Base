@@ -11,7 +11,8 @@ import cpw.mods.fml.common.IWorldGenerator;
  * 
  * @author Jcm2606
  */
-public abstract class GeneratorBase implements IWorldGenerator {
+public abstract class GeneratorBase implements IWorldGenerator
+{
     
     /**
      * Instance of {@link GenerationUtil}.
@@ -19,12 +20,16 @@ public abstract class GeneratorBase implements IWorldGenerator {
     protected GenerationUtil util = new GenerationUtil();
     
     @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-        switch(world.provider.dimensionId)
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+    {
+        switch (world.provider.dimensionId)
         {
-        case -1: generateNether(world, random, chunkX*16, chunkZ*16);
-        case 0: generateSurface(world, random, chunkX*16, chunkZ*16);
-        case 1: generateEnd(world, random, chunkX*16, chunkZ*16);
+            case -1:
+                generateNether(world, random, chunkX * 16, chunkZ * 16);
+            case 0:
+                generateSurface(world, random, chunkX * 16, chunkZ * 16);
+            case 1:
+                generateEnd(world, random, chunkX * 16, chunkZ * 16);
         }
     }
     

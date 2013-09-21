@@ -1,6 +1,7 @@
 package jcm2606.mods.jccore.core.util;
 
-public class Colours {
+public class Colours
+{
     public static final int BLACK = 0;
     public static final int BLUE_DARK = 1;
     public static final int GREEN = 2;

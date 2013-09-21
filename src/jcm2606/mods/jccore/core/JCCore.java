@@ -16,18 +16,20 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = "JCCore", name = "JC Core", version = JCCore.VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, versionBounds = JCCore.VERSION, channels = { PacketHandlerCore.CHANNEL_JCCORE }, packetHandler = PacketHandlerCore.class)
-public class JCCore {
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, versionBounds = JCCore.VERSION, channels =
+{ PacketHandlerCore.CHANNEL_JCCORE }, packetHandler = PacketHandlerCore.class)
+public class JCCore
+{
     public static final String VERSION = "0.1.0.0";
-
+    
     @Instance("JCCore")
     public static JCCore instance;
-
+    
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_PATH, serverSide = Reference.COMMON_PROXY_PATH)
     public static CommonProxy proxy;
-
+    
     public static LoggerBase logger = new LoggerBase("JC Core");
-
+    
     @EventHandler
     public static void preLoad(FMLPreInitializationEvent event)
     {
@@ -36,12 +38,12 @@ public class JCCore {
         CompatibilityContainer.registerContainer(new CompatContainerJCCore());
         proxy.registerHandlers();
     }
-
+    
     @EventHandler
     public static void load(FMLInitializationEvent event)
     {
     }
-
+    
     @EventHandler
     public static void postLoad(FMLPostInitializationEvent event)
     {
@@ -49,7 +51,8 @@ public class JCCore {
     }
     
     @EventHandler
-    public void serverStarting(FMLServerStartingEvent event){
+    public void serverStarting(FMLServerStartingEvent event)
+    {
         event.registerServerCommand(new CommandJCCore());
     }
 }

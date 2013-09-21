@@ -8,26 +8,35 @@ import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-public class ClientProxy extends CommonProxy implements IProxyClient {
+public class ClientProxy extends CommonProxy implements IProxyClient
+{
     @Override
-    public void loadRendering() {
+    public void loadRendering()
+    {
         RenderUtil.loadRenderingUtils();
     }
-
+    
     @Override
-    public void loadTileEntities() {}
-
+    public void loadTileEntities()
+    {
+    }
+    
     @Override
-    public void loadCustomRarities() {}
-
+    public void loadCustomRarities()
+    {
+    }
+    
     @Override
-    public void registerHandlers() {
+    public void registerHandlers()
+    {
         super.registerHandlers();
         
         TickRegistry.registerTickHandler(new RenderUtil(), Side.CLIENT);
         MinecraftForge.EVENT_BUS.register(new JCCoreEventHandler());
     }
-
+    
     @Override
-    public void loadKeyBindings() {}
+    public void loadKeyBindings()
+    {
+    }
 }

@@ -1,26 +1,37 @@
 package jcm2606.mods.jccore.core;
 
-
-public class CommonProxy implements IProxyCommon {
+public class CommonProxy implements IProxyCommon
+{
     @Override
-    public void loadRendering() {}
-
+    public void loadRendering()
+    {
+    }
+    
     @Override
-    public void loadTileEntities() {}
-
+    public void loadTileEntities()
+    {
+    }
+    
     @Override
-    public void loadCustomRarities() {}
-
+    public void loadCustomRarities()
+    {
+    }
+    
     @Override
-    public void registerHandlers() {}
-
+    public void registerHandlers()
+    {
+    }
+    
     @Override
-    public void loadKeyBindings() {}
-
+    public void loadKeyBindings()
+    {
+    }
+    
     @Override
     public void loadRenderIds()
-    {}
-
+    {
+    }
+    
     @Override
     public void loadMobs()
     {

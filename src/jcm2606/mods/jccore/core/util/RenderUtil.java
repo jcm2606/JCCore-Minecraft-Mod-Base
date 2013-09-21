@@ -25,37 +25,38 @@ import org.lwjgl.opengl.GL11;
 /**
  * Utilities designed for rendering.
  */
-public class RenderUtil extends TickHandlerClientBase {
+public class RenderUtil extends TickHandlerClientBase
+{
     private static final RenderUtil INSTANCE = new RenderUtil();
-
+    
     public ScaledResolution sr;
-
+    
     public static int width;
     public static int height;
-
+    
     public static RenderItem renderItem = new RenderItem();
     public static RenderBlocks renderBlocks;
     public static TextureManager renderEngine;
     public static RenderManager renderManager = RenderManager.instance;
     public static RenderGlobal renderGlobal;
-
+    
     public static void loadRenderingUtils()
     {
         renderGlobal = Minecraft.getMinecraft().renderGlobal;
         renderBlocks = renderGlobal.globalRenderBlocks;
         renderEngine = Minecraft.getMinecraft().renderEngine;
     }
-
+    
     public static RenderUtil instance()
     {
         return INSTANCE;
     }
-
+    
     public void bindTexture(String modid, String texture)
     {
         renderEngine.func_110577_a(ConvertUtil.getResourceLocation(modid, texture));
     }
-
+    
     /**
      * Draws a textured rectangle at the stored z-value. Args: x, y, u, v,
      * width, height, xscale, yscale, zscale
@@ -64,7 +65,7 @@ public class RenderUtil extends TickHandlerClientBase {
     {
         drawTextureRect(par1, par2, par3, par4, par5, par6, xscale, yscale, zscale, 1.0, 1.0, 1.0);
     }
-
+    
     /**
      * Draws a textured rectangle at the stored z-value. Args: x, y, u, v,
      * width, height, scale
@@ -73,7 +74,7 @@ public class RenderUtil extends TickHandlerClientBase {
     {
         drawTextureRect(par1, par2, par3, par4, par5, par6, scale, scale, scale);
     }
-
+    
     /**
      * Draws a textured rectangle at the stored z-value. Args: x, y, u, v,
      * width, height, xscale, yscale, zscale, colourR, colourG, colourB
@@ -98,12 +99,12 @@ public class RenderUtil extends TickHandlerClientBase {
         GL11.glScalef(1.0f, 1.0f, 1.0f);
         GL11.glPopMatrix();
     }
-
+    
     public void drawFullScreenOverlay(int x, int y, String texturePath)
     {
         drawFullScreenOverlay(x, y, texturePath, 1.0f, 1.0f, 1.0f);
     }
-
+    
     public void drawFullScreenOverlay(int x, int y, String texturePath, float colourR, float colourG, float colourB)
     {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -124,7 +125,7 @@ public class RenderUtil extends TickHandlerClientBase {
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
-
+    
     public void drawOutlinedBoundingBox(AxisAlignedBB par1AxisAlignedBB)
     {
         Tessellator var2 = Tessellator.instance;
@@ -153,19 +154,21 @@ public class RenderUtil extends TickHandlerClientBase {
         var2.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.maxZ);
         var2.draw();
     }
-
+    
     public void renderVignette(float par1, int par2, int par3)
     {
         par1 = 1.0F - par1;
-
-        if (par1 < 0.0F) {
+        
+        if (par1 < 0.0F)
+        {
             par1 = 0.0F;
         }
-
-        if (par1 > 1.0F) {
+        
+        if (par1 > 1.0F)
+        {
             par1 = 1.0F;
         }
-
+        
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glDepthMask(false);
         GL11.glBlendFunc(GL11.GL_ZERO, GL11.GL_ONE_MINUS_SRC_COLOR);
@@ -183,7 +186,7 @@ public class RenderUtil extends TickHandlerClientBase {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
     }
-
+    
     public void renderLabel(String par2Str, double par3, double par5, double par7)
     {
         FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
@@ -220,7 +223,7 @@ public class RenderUtil extends TickHandlerClientBase {
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         Tessellator tessellator = Tessellator.instance;
         byte b0 = 0;
-
+        
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         tessellator.startDrawingQuads();
         tessellator.setColorRGBA_F((float) red, (float) green, (float) blue, (float) alpha);
@@ -268,7 +271,7 @@ public class RenderUtil extends TickHandlerClientBase {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glPopMatrix();
     }
-
+    
     // Tick Handling Code
     // Only used to set the Scaled Resolution sr variable and width and height
     // variables.
@@ -276,27 +279,27 @@ public class RenderUtil extends TickHandlerClientBase {
     public void onClientWorldLoad(Minecraft mc, World world)
     {
     }
-
+    
     @Override
     public void onClientWorldUnload(Minecraft mc, World world)
     {
     }
-
+    
     @Override
     public void onClientWorldTick(Minecraft mc, World world)
     {
     }
-
+    
     @Override
     public void onHUDTick(Minecraft mc)
     {
         this.sr = new ScaledResolution(Minecraft.getMinecraft().gameSettings, Minecraft.getMinecraft().displayWidth,
                 Minecraft.getMinecraft().displayHeight);
-
+        
         width = sr.getScaledWidth();
         height = sr.getScaledHeight();
     }
-
+    
     @Override
     public void onGUITick(Minecraft mc, GuiScreen guiscreen)
     {
@@ -304,14 +307,8 @@ public class RenderUtil extends TickHandlerClientBase {
     
     public void renderAllSides(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer, Icon tex, boolean allsides)
     {
-        Icon[] texArray = new Icon[] {
-                tex,
-                tex,
-                tex,
-                tex,
-                tex,
-                tex
-        };
+        Icon[] texArray = new Icon[]
+        { tex, tex, tex, tex, tex, tex };
         
         this.renderAllSides(world, x, y, z, block, renderer, texArray, allsides);
     }
@@ -323,53 +320,66 @@ public class RenderUtil extends TickHandlerClientBase {
      * @param z
      * @param block
      * @param renderer
-     * @param texArray South, North, West, East, Top, Bottom
+     * @param texArray
+     *            South, North, West, East, Top, Bottom
      * @param allsides
      */
     public void renderAllSides(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer, Icon[] texArray, boolean allsides)
     {
-        if ((allsides) || (!block.shouldSideBeRendered(world, x - 1, y, z, 6))) {
+        if ((allsides) || (!block.shouldSideBeRendered(world, x - 1, y, z, 6)))
+        {
             renderer.renderFaceZPos(block, x, y, z, texArray[0]);
         }
-          if ((allsides) || (!block.shouldSideBeRendered(world, x + 1, y, z, 6))) {
+        if ((allsides) || (!block.shouldSideBeRendered(world, x + 1, y, z, 6)))
+        {
             renderer.renderFaceZNeg(block, x, y, z, texArray[1]);
         }
-          if ((allsides) || (!block.shouldSideBeRendered(world, x, y, z - 1, 6))) {
+        if ((allsides) || (!block.shouldSideBeRendered(world, x, y, z - 1, 6)))
+        {
             renderer.renderFaceXNeg(block, x, y, z, texArray[2]);
         }
-          if ((allsides) || (!block.shouldSideBeRendered(world, x, y, z + 1, 6))) {
+        if ((allsides) || (!block.shouldSideBeRendered(world, x, y, z + 1, 6)))
+        {
             renderer.renderFaceXPos(block, x, y, z, texArray[3]);
         }
-          if ((allsides) || (!block.shouldSideBeRendered(world, x, y - 1, z, 6))) {
+        if ((allsides) || (!block.shouldSideBeRendered(world, x, y - 1, z, 6)))
+        {
             renderer.renderFaceYPos(block, x, y, z, texArray[4]);
         }
-          if ((allsides) || (!block.shouldSideBeRendered(world, x, y + 1, z, 6))) {
+        if ((allsides) || (!block.shouldSideBeRendered(world, x, y + 1, z, 6)))
+        {
             renderer.renderFaceYNeg(block, x, y, z, texArray[5]);
         }
     }
-
+    
     public void renderAllSidesInverted(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer, Icon tex, boolean allsides)
     {
-      if ((allsides) || (!block.shouldSideBeRendered(world, x - 1, y, z, 6))) {
-        renderer.renderFaceZPos(block, x - 1, y, z, tex);
+        if ((allsides) || (!block.shouldSideBeRendered(world, x - 1, y, z, 6)))
+        {
+            renderer.renderFaceZPos(block, x - 1, y, z, tex);
+        }
+        if ((allsides) || (!block.shouldSideBeRendered(world, x + 1, y, z, 6)))
+        {
+            renderer.renderFaceZNeg(block, x + 1, y, z, tex);
+        }
+        if ((allsides) || (!block.shouldSideBeRendered(world, x, y, z - 1, 6)))
+        {
+            renderer.renderFaceXNeg(block, x, y, z - 1, tex);
+        }
+        if ((allsides) || (!block.shouldSideBeRendered(world, x, y, z + 1, 6)))
+        {
+            renderer.renderFaceXPos(block, x, y, z + 1, tex);
+        }
+        if ((allsides) || (!block.shouldSideBeRendered(world, x, y - 1, z, 6)))
+        {
+            renderer.renderFaceYPos(block, x, y - 1, z, tex);
+        }
+        if ((allsides) || (!block.shouldSideBeRendered(world, x, y + 1, z, 6)))
+        {
+            renderer.renderFaceYNeg(block, x, y + 1, z, tex);
+        }
     }
-      if ((allsides) || (!block.shouldSideBeRendered(world, x + 1, y, z, 6))) {
-        renderer.renderFaceZNeg(block, x + 1, y, z, tex);
-    }
-      if ((allsides) || (!block.shouldSideBeRendered(world, x, y, z - 1, 6))) {
-        renderer.renderFaceXNeg(block, x, y, z - 1, tex);
-    }
-      if ((allsides) || (!block.shouldSideBeRendered(world, x, y, z + 1, 6))) {
-        renderer.renderFaceXPos(block, x, y, z + 1, tex);
-    }
-      if ((allsides) || (!block.shouldSideBeRendered(world, x, y - 1, z, 6))) {
-        renderer.renderFaceYPos(block, x, y - 1, z, tex);
-    }
-      if ((allsides) || (!block.shouldSideBeRendered(world, x, y + 1, z, 6))) {
-        renderer.renderFaceYNeg(block, x, y + 1, z, tex);
-    }
-    }
-
+    
     public void renderAllSides(int x, int y, int z, Block block, RenderBlocks renderer, Icon tex)
     {
         renderer.renderFaceZPos(block, x - 1, y, z, tex);
@@ -382,81 +392,84 @@ public class RenderUtil extends TickHandlerClientBase {
     
     public static void drawFaces(RenderBlocks renderblocks, Block block, Icon icon, boolean st)
     {
-      drawFaces(renderblocks, block, icon, icon, icon, icon, icon, icon, st);
-    }
-
-    public static void drawFaces(RenderBlocks renderblocks, Block block, Icon i1, Icon i2, Icon i3, Icon i4, Icon i5, Icon i6, boolean solidtop)
-    {
-      Tessellator tessellator = Tessellator.instance;
-      GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
-      tessellator.startDrawingQuads();
-      tessellator.setNormal(0.0F, -1.0F, 0.0F);
-      renderblocks.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, i1);
-      tessellator.draw();
-      if (solidtop) {
-        GL11.glDisable(3008);
-    }
-      tessellator.startDrawingQuads();
-      tessellator.setNormal(0.0F, 1.0F, 0.0F);
-      renderblocks.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, i2);
-      tessellator.draw();
-      if (solidtop) {
-        GL11.glEnable(3008);
-    }
-      tessellator.startDrawingQuads();
-      tessellator.setNormal(0.0F, 0.0F, 1.0F);
-      renderblocks.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, i3);
-      tessellator.draw();
-      tessellator.startDrawingQuads();
-      tessellator.setNormal(0.0F, 0.0F, -1.0F);
-      renderblocks.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, i4);
-      tessellator.draw();
-      tessellator.startDrawingQuads();
-      tessellator.setNormal(1.0F, 0.0F, 0.0F);
-      renderblocks.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, i5);
-      tessellator.draw();
-      tessellator.startDrawingQuads();
-      tessellator.setNormal(-1.0F, 0.0F, 0.0F);
-      renderblocks.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, i6);
-      tessellator.draw();
-      GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+        drawFaces(renderblocks, block, icon, icon, icon, icon, icon, icon, st);
     }
     
-    public int setBrightness(IBlockAccess blockAccess, int i, int j, int k, Block block, Tessellator tessellator) {
+    public static void drawFaces(RenderBlocks renderblocks, Block block, Icon i1, Icon i2, Icon i3, Icon i4, Icon i5, Icon i6, boolean solidtop)
+    {
+        Tessellator tessellator = Tessellator.instance;
+        GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, -1.0F, 0.0F);
+        renderblocks.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, i1);
+        tessellator.draw();
+        if (solidtop)
+        {
+            GL11.glDisable(3008);
+        }
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 1.0F, 0.0F);
+        renderblocks.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, i2);
+        tessellator.draw();
+        if (solidtop)
+        {
+            GL11.glEnable(3008);
+        }
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 0.0F, 1.0F);
+        renderblocks.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, i3);
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 0.0F, -1.0F);
+        renderblocks.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, i4);
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(1.0F, 0.0F, 0.0F);
+        renderblocks.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, i5);
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(-1.0F, 0.0F, 0.0F);
+        renderblocks.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, i6);
+        tessellator.draw();
+        GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+    }
+    
+    public int setBrightness(IBlockAccess blockAccess, int i, int j, int k, Block block, Tessellator tessellator)
+    {
         int mb = block.getMixedBrightnessForBlock(blockAccess, i, j, k);
         tessellator.setBrightness(mb);
         float f = 1.0F;
-
+        
         int l = block.colorMultiplier(blockAccess, i, j, k);
         float f1 = (l >> 16 & 0xFF) / 255.0F;
         float f2 = (l >> 8 & 0xFF) / 255.0F;
         float f3 = (l & 0xFF) / 255.0F;
         if (EntityRenderer.anaglyphEnable)
         {
-          float f6 = (f1 * 30.0F + f2 * 59.0F + f3 * 11.0F) / 100.0F;
-          float f4 = (f1 * 30.0F + f2 * 70.0F) / 100.0F;
-          float f7 = (f1 * 30.0F + f3 * 70.0F) / 100.0F;
-          f1 = f6;
-          f2 = f4;
-          f3 = f7;
+            float f6 = (f1 * 30.0F + f2 * 59.0F + f3 * 11.0F) / 100.0F;
+            float f4 = (f1 * 30.0F + f2 * 70.0F) / 100.0F;
+            float f7 = (f1 * 30.0F + f3 * 70.0F) / 100.0F;
+            f1 = f6;
+            f2 = f4;
+            f3 = f7;
         }
         tessellator.setColorOpaque_F(f * f1, f * f2, f * f3);
         return mb;
-      }
+    }
     
     public static int getBrightnessForRender(Entity entity, double x, double z)
     {
-      int var2 = MathHelper.floor_double(x);
-      int var3 = MathHelper.floor_double(z);
-
-      if (entity.worldObj.blockExists(var2, 0, var3))
-      {
-        double var4 = (entity.boundingBox.maxY - entity.boundingBox.minY) * 0.66D;
-        int var6 = MathHelper.floor_double(entity.posY - entity.yOffset + var4);
-        return entity.worldObj.getLightBrightnessForSkyBlocks(var2, var6, var3, 2);
-      }
-
-      return 0;
+        int var2 = MathHelper.floor_double(x);
+        int var3 = MathHelper.floor_double(z);
+        
+        if (entity.worldObj.blockExists(var2, 0, var3))
+        {
+            double var4 = (entity.boundingBox.maxY - entity.boundingBox.minY) * 0.66D;
+            int var6 = MathHelper.floor_double(entity.posY - entity.yOffset + var4);
+            return entity.worldObj.getLightBrightnessForSkyBlocks(var2, var6, var3, 2);
+        }
+        
+        return 0;
     }
     
     /**
@@ -465,7 +478,7 @@ public class RenderUtil extends TickHandlerClientBase {
     public void drawCrossedSquares(Icon icon, double par3, double par5, double par7, float par9)
     {
         Tessellator tessellator = Tessellator.instance;
-
+        
         double d3 = icon.getMinU();
         double d4 = icon.getMinV();
         double d5 = icon.getMaxU();

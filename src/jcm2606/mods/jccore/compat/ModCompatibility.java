@@ -10,7 +10,8 @@ import net.minecraft.item.Item;
  * 
  * @author Jcm2606
  */
-public class ModCompatibility {
+public class ModCompatibility
+{
     private static final ModCompatibility instance = new ModCompatibility();
     
     public static ModCompatibility get()
@@ -30,7 +31,8 @@ public class ModCompatibility {
     }
     
     /**
-     * Get a {@link Block} instance of the given variable inside the given class.
+     * Get a {@link Block} instance of the given variable inside the given
+     * class.
      * 
      * @param classPath
      * @param varName
@@ -38,22 +40,28 @@ public class ModCompatibility {
      */
     public Block getBlock(String classPath, String varName)
     {
-        try {
+        try
+        {
             return (Block) Class.forName(classPath).getField(varName).get(null);
         }
-        catch (IllegalArgumentException e) {
+        catch (IllegalArgumentException e)
+        {
             e.printStackTrace();
         }
-        catch (IllegalAccessException e) {
+        catch (IllegalAccessException e)
+        {
             e.printStackTrace();
         }
-        catch (NoSuchFieldException e) {
+        catch (NoSuchFieldException e)
+        {
             e.printStackTrace();
         }
-        catch (SecurityException e) {
+        catch (SecurityException e)
+        {
             e.printStackTrace();
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
         }
         
@@ -61,7 +69,8 @@ public class ModCompatibility {
     }
     
     /**
-     * Get an {@link Item} instance of the given variable inside the given class.
+     * Get an {@link Item} instance of the given variable inside the given
+     * class.
      * 
      * @param classPath
      * @param varName
@@ -69,22 +78,28 @@ public class ModCompatibility {
      */
     public Item getItem(String classPath, String varName)
     {
-        try {
+        try
+        {
             return (Item) Class.forName(classPath).getField(varName).get(null);
         }
-        catch (IllegalArgumentException e) {
+        catch (IllegalArgumentException e)
+        {
             e.printStackTrace();
         }
-        catch (IllegalAccessException e) {
+        catch (IllegalAccessException e)
+        {
             e.printStackTrace();
         }
-        catch (NoSuchFieldException e) {
+        catch (NoSuchFieldException e)
+        {
             e.printStackTrace();
         }
-        catch (SecurityException e) {
+        catch (SecurityException e)
+        {
             e.printStackTrace();
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
         }
         
@@ -92,51 +107,59 @@ public class ModCompatibility {
     }
     
     /**
-     * Starts object loading in the given {@link Class}. Given {@link Class} MUST implement {@link IObjectCore} for this to work.
+     * Starts object loading in the given {@link Class}. Given {@link Class}
+     * MUST implement {@link IObjectCore} for this to work.
      * 
      * @param clazz
      */
     public void startObjectLoadingInClass(Class<?> clazz)
     {
-        try {
+        try
+        {
             Object obj = clazz.newInstance();
             
-            if(obj instanceof IObjectCore)
+            if (obj instanceof IObjectCore)
             {
                 IObjectCore objectCore = (IObjectCore) obj;
                 
                 objectCore.loadObjects();
             }
         }
-        catch (InstantiationException e) {
+        catch (InstantiationException e)
+        {
             e.printStackTrace();
         }
-        catch (IllegalAccessException e) {
+        catch (IllegalAccessException e)
+        {
             e.printStackTrace();
         }
     }
     
     /**
-     * Starts object ID loading in the given {@link Class}. Given {@link Class} MUST implement {@link IObjectCore} for this to work.
+     * Starts object ID loading in the given {@link Class}. Given {@link Class}
+     * MUST implement {@link IObjectCore} for this to work.
      * 
      * @param clazz
      */
     public void startObjectIdLoadingInClass(Class<?> clazz)
     {
-        try {
+        try
+        {
             Object obj = clazz.newInstance();
             
-            if(obj instanceof IObjectCore)
+            if (obj instanceof IObjectCore)
             {
                 IObjectCore objectCore = (IObjectCore) obj;
                 
                 objectCore.loadIDs();
             }
         }
-        catch (InstantiationException e) {
+        catch (InstantiationException e)
+        {
             e.printStackTrace();
         }
-        catch (IllegalAccessException e) {
+        catch (IllegalAccessException e)
+        {
             e.printStackTrace();
         }
     }
