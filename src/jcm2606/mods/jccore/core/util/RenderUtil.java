@@ -308,7 +308,7 @@ public class RenderUtil extends TickHandlerClientBase
     public void renderAllSides(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer, Icon tex, boolean allsides)
     {
         Icon[] texArray = new Icon[]
-        { tex, tex, tex, tex, tex, tex };
+                { tex, tex, tex, tex, tex, tex };
         
         this.renderAllSides(world, x, y, z, block, renderer, texArray, allsides);
     }

@@ -35,7 +35,5 @@ public class CommonProxy implements IProxyCommon
     @Override
     public void loadMobs()
     {
-        // TODO Auto-generated method stub
-        
     }
 }
