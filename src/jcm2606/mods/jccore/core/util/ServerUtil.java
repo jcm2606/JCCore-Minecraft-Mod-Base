@@ -140,7 +140,7 @@ public class ServerUtil
     
     public static boolean isPlayerOP(String username)
     {
-        return mc().getConfigurationManager().areCommandsAllowed(username);
+        return mc().getConfigurationManager().isPlayerOpped(username);
     }
     
     public static boolean isPlayerOwner(String username)

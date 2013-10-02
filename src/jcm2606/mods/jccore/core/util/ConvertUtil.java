@@ -14,7 +14,7 @@ public class ConvertUtil
     {
         ChatMessageComponent chatComponent = new ChatMessageComponent();
         
-        chatComponent.func_111079_a(message);
+        chatComponent.addText(message);
         
         return chatComponent;
     }
