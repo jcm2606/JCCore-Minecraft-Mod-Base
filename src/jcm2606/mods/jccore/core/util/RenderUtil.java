@@ -380,16 +380,6 @@ public class RenderUtil extends TickHandlerClientBase
         }
     }
     
-    public void renderAllSides(int x, int y, int z, Block block, RenderBlocks renderer, Icon tex)
-    {
-        renderer.renderFaceZPos(block, x - 1, y, z, tex);
-        renderer.renderFaceZNeg(block, x + 1, y, z, tex);
-        renderer.renderFaceXNeg(block, x, y, z - 1, tex);
-        renderer.renderFaceXPos(block, x, y, z + 1, tex);
-        renderer.renderFaceYPos(block, x, y - 1, z, tex);
-        renderer.renderFaceYNeg(block, x, y + 1, z, tex);
-    }
-    
     public static void drawFaces(RenderBlocks renderblocks, Block block, Icon icon, boolean st)
     {
         drawFaces(renderblocks, block, icon, icon, icon, icon, icon, icon, st);

@@ -1,10 +1,12 @@
 package jcm2606.mods.jccore.core;
 
+import jcm2606.mods.jccore.client.render.BlockRenderHandler;
 import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.jccore.core.command.CommandJCCore;
 import jcm2606.mods.jccore.core.lib.Reference;
 import jcm2606.mods.jccore.core.util.LoggerBase;
 import jcm2606.mods.jccore.network.PacketHandlerCore;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -30,12 +32,19 @@ public class JCCore
     
     public static LoggerBase logger = new LoggerBase("JC Core");
     
+    public static int renderIDUniversal;
+    
     @EventHandler
     public static void preLoad(FMLPreInitializationEvent event)
     {
         event.getModMetadata().version = JCCore.VERSION;
         
         CompatibilityContainer.registerContainer(new CompatContainerJCCore());
+        
+        renderIDUniversal = RenderingRegistry.getNextAvailableRenderId();
+        
+        RenderingRegistry.registerBlockHandler(new BlockRenderHandler());
+        
         proxy.registerHandlers();
     }
     

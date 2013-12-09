@@ -17,7 +17,7 @@ public class ItemMeta extends Item
 {
     private final String[] names;
     private final String[] icons;
-    private Icon[] iconList;
+    protected Icon[] iconList;
     
     public ItemMeta(int id, String[] names, String[] icons)
     {
@@ -35,6 +35,11 @@ public class ItemMeta extends Item
         
         for (int i = 0; i < icons.length; i++)
         {
+            if(icons[i] == null)
+            {
+                continue;
+            }
+            
             iconList[i] = register.registerIcon(icons[i]);
         }
     }
@@ -57,7 +62,10 @@ public class ItemMeta extends Item
     {
         for (int i = 0; i < this.icons.length; i++)
         {
-            list.add(new ItemStack(itemID, 1, i));
+            if(this.icons[i] != null)
+            {
+                list.add(new ItemStack(itemID, 1, i));
+            }
         }
     }
 }
